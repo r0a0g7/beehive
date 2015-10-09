@@ -86,14 +86,7 @@ var pop = function()
 var BoardScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
-
-        if (INITIALIZED_2 == false)
-        {
-            INITIALIZED_2 = true;
-
-
             var layer = new BoardLayer();
             this.addChild(layer);
-        }
     }
 });
