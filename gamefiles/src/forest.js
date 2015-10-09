@@ -1,6 +1,6 @@
-var INITIALIZED = false;
+var INITIALIZED_1 = false;
 
-var HelloWorldLayer = cc.Layer.extend({
+var ForestLayer = cc.Layer.extend({
     sprite:null,
     ctor:function () {
         //////////////////////////////
@@ -13,24 +13,15 @@ var HelloWorldLayer = cc.Layer.extend({
         // ask the window size
         var size = cc.winSize;
 
-        var sprite = new cc.Sprite.create(res.HelloWorld_png);
+        var sprite = new cc.Sprite.create(res.CloseNormal_png);
         sprite.setAnchorPoint(cc.p(0.5, 0.5));
         sprite.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(sprite, 0);
 
-
-        var transitionTime = 1;
-// Create the next scene
-        var nextScene = new ForestScene();
-// Create the transition scene with the next scene
-        var transitionScene = new cc.TransitionProgressInOut(transitionTime, nextScene);
-
-        cc.director.runScene(new cc.TransitionFadeUp(1,transitionScene));
-
-       /* var menuItem1 = new cc.MenuItemFont("Push", play);
+        var menuItem1 = new cc.MenuItemFont("Push", play);
         var menu = new cc.Menu(menuItem1);
         menu.alignItemsVertically();
-        this.addChild(menu,2);*/
+        this.addChild(menu,3);
 
         return true;
     }
@@ -38,19 +29,20 @@ var HelloWorldLayer = cc.Layer.extend({
 
 var play = function()
 {
-
-
+    var scene = new BoardScene();
+    cc.director.runScene(scene);
 };
 
-var HelloWorldScene = cc.Scene.extend({
+var ForestScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
-
-        if (INITIALIZED == false)
+cc.log("ForestScene");
+        if (INITIALIZED_1 == false)
         {
-            INITIALIZED = true;
+            cc.log("initializing layer");
+            INITIALIZED_1 = true;
 
-            var layer = new HelloWorldLayer();
+            var layer = new ForestLayer();
             this.addChild(layer);
         }
     }

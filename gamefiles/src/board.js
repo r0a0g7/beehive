@@ -1,4 +1,6 @@
 var INITIALIZED_2 = false;
+var CELLX = 10;
+var CELLY = 10;
 
 var BoardLayer = cc.Layer.extend({
     sprite:null,
@@ -8,13 +10,15 @@ var BoardLayer = cc.Layer.extend({
         this._super();
         this._cells = new Array;
 
-        for (i = 0; i < 10; i++) {
-            this.addCell(i);
+        for (i = 0; i < CELLX; i++) {
+            for(j=0;j< CELLY ;j++) {
+                this.addCell(i, j);
+            }
         }
 
         //just check the first cell in array got the value for hasBall
         var doescellhaveball = this._cells[0].getHasBall();
-        cc.log(doescellhaveball);
+       // cc.log(doescellhaveball);
 
         /////////////////////////////
         // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -22,10 +26,10 @@ var BoardLayer = cc.Layer.extend({
         // ask the window size
         var size = cc.winSize;
 
-      /*  var sprite = new cc.Sprite.create(res.CellNormal_png);
-        sprite.setAnchorPoint(cc.p(0.5, 0.5));
+       var sprite = new cc.Sprite.create(res.HelloWorld_png);
+       // sprite.setAnchorPoint(cc.p(0.5, 0.5));
         sprite.setPosition(cc.p(size.width / 2, size.height / 2));
-        this.addChild(sprite, 0);*/
+        this.addChild(sprite, 0);
         /*var menuItemPlay = new cc.MenuItemSprite(
             new cc.Sprite(res.ck2), // normal state image
             new cc.Sprite(res.ck2), // select state image
@@ -40,19 +44,20 @@ var BoardLayer = cc.Layer.extend({
         return true;
     },
 
-    addCell : function(x) {
+    addCell : function(x,y) {
         try {
 
-            var cell = new Cell(x);
-            cell.setCellSpritePos(x,75);
+            var cell = new Cell(x,y);
+            var size = cc.winSize;
+            cc.p(size.width / 2, size.height / 2);
+
+            cell.setCellSpritePos(x,y);
             cell.setHasBall(true);
             cell.setHasBall(false);
-            cc.log("Adding Menu");
 
-            cc.log("Added Menu");
             this.addChild(cell.getCellSprite(), 3);
 
-            cc.log("Adding PLayer");
+            //cc.log("Adding PLayer");
             this._cells.push(cell);
 
             this._numberOfCells++;
