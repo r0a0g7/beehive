@@ -3,8 +3,6 @@
 function Cell(x, y) {
 
     this._testsprite =   cc.Sprite.create(res.CellNormal_png);
-    this._hasMoved = false;
-    this._hasBall = false;
     this._x = x;
     this._y = y;
 
@@ -38,20 +36,19 @@ Cell.prototype.setCellSpritePos = function (x, y) {
 
     cc.log("Here");
 }
-Cell.prototype.setHasMoved = function (bool) {
 
-    this._hasMoved = bool;
-}
-Cell.prototype.setHasBall = function (bool) {
+Cell.prototype.setUpEventListner = function() {
 
-    this._hasBall = bool;
-}
+    cc.log("Here");
 
-Cell.prototype.getHasMoved = function() {
+    cc.eventManager.addListener({
+        event: cc.EventListener.MOUSE,
+        onMouseUp: function (event) {
 
-    return this._hasMoved;
-}
-Cell.prototype.getHasBall = function() {
+            cc.log("onMouseUp");
+            alert("Hi Mouse");
+            cc.eventManager.removeEventListener(cc.EventListener.MOUSE, this._testsprite);
+        }
+    }, this._testsprite);
 
-    return this._hasBall;
 }

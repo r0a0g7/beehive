@@ -15,10 +15,6 @@ var BoardLayer = cc.Layer.extend({
             }
         }
 
-        //just check the first cell in array got the value for hasBall
-        var doescellhaveball = this._cells[0].getHasBall();
-       // cc.log(doescellhaveball);
-
         /////////////////////////////
         // 2. add a menu item with "X" image, which is clicked to quit the program
         //    you may modify it.
@@ -51,15 +47,14 @@ var BoardLayer = cc.Layer.extend({
             cc.p(size.width / 2, size.height / 2);
 
             cell.setCellSpritePos(x,y);
-            cell.setHasBall(true);
-            cell.setHasBall(false);
+
+            cell.setUpEventListner();
 
             this.addChild(cell.getCellSprite(), 3);
 
             //cc.log("Adding PLayer");
             this._cells.push(cell);
 
-            this._numberOfCells++;
         }
         catch (err) {
             cc.log("inside catch");

@@ -3,6 +3,7 @@ var res = {
 
     CloseNormal_png : "res/StartScreen.png",
     CellNormal_png : "res/Cell_Empty.png",
+    CellPressed_png : "res/Cell_Closed.png",
     BG_png:"res/BG.png"
 
 };
