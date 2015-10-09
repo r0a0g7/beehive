@@ -1,4 +1,3 @@
-var INITIALIZED_2 = false;
 var CELLX = 10;
 var CELLY = 10;
 
