@@ -11,7 +11,7 @@ function Cell(x, y) {
         function(menuItem){
             cc.log("Tag "+menuItem.getTag());
            // menuItem.selected = true;
-            menuItem.enabled = false;
+            onClick(menuItem);
         }, this);
     menuItemPlay.setTag(i);
 
@@ -54,18 +54,6 @@ Cell.prototype.setCellSpritePos = function (x, y) {
     cc.log("Here");
 }
 
-Cell.prototype.setUpEventListner = function() {
-
-    cc.log("Here");
-
-    cc.eventManager.addListener({
-        event: cc.EventListener.MOUSE,
-        onMouseUp: function (event) {
-
-            cc.log("onMouseUp");
-            alert("Hi Mouse");
-            cc.eventManager.removeEventListener(cc.EventListener.MOUSE, this._testsprite);
-        }
-    }, this._testsprite);
-
+function onClick(menuItem){
+    menuItem.enabled = false;
 }
