@@ -25,22 +25,30 @@ function Cell(x, y) {
 }
 
 Cell.prototype._testsprite;
-Cell.prototype._hasMoved;
-Cell.prototype._hasBall;
+Cell.prototype._hasBomb;
+Cell.prototype._hasHoney;
 
 Cell.prototype.getCellSprite = function() {
     //cc.log("getPLayerSprite");
     return this._testsprite;
 }
 
-Cell.prototype.gethasMoved = function() {
-    //cc.log("getPLayerSprite");
-    return this._hasMoved;
+Cell.prototype.getHasHoney = function(){
+    return this._hasHoney;
 }
 
-Cell.prototype.sethasMoved = function() {
+Cell.prototype.setHasHoney = function(){
+    this._hasHoney = 1;
+}
+
+Cell.prototype.gethasBomb = function() {
     //cc.log("getPLayerSprite");
-    this._hasMoved = true;
+    return this._hasBomb;
+}
+
+Cell.prototype.sethasBomb = function() {
+    //cc.log("getPLayerSprite");
+    this._hasBomb = 1;
 }
 Cell.prototype.setCellSpritePos = function (x, y) {
    // this._testsprite.setAnchorPoint(cc.p(0.5, 0.5));
