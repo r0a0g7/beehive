@@ -13,7 +13,16 @@ var res = {
     CellCount5_png   : "res/Cell_count05.png",
     CellCount6_png   : "res/Cell_count06.png",
     CellEmpty_png :"res/Cell_Empty.png",
+    Cell_BeeClickMe_png :"res/Cell_BeeClickMe.png",
+
+    Cell_Bee_GameOver_png :"res/Cell_Bee_GameOver.png",
+    Powerup_png :"res/Powerup.png",
+    ScoreBoard_png:"res/ScoreBoard.png",
+    StartButton_png:"res/StartButton.png",
+    StartButtonPressed_png :"res/StartButtonPressed.png",
+
     Cell_Selected_png :"res/Cell_Selected.png",
+    BeeHive_BG_png:"res/BeeHive_BG.png",
 
     BG_png:"res/BG.png",
     Forest_BG_png:"res/ForestBG.png",

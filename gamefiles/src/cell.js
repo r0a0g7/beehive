@@ -3,7 +3,8 @@
 function Cell(x, y) {
 
     var size = cc.winSize;
-
+    this._x=x;
+    this._y=y;
     var menuItemPlay = new cc.MenuItemSprite(
         new cc.Sprite(res.CellNormal_png), // normal state image
         new cc.Sprite(res.Cell_Selected_png), // select state image
@@ -17,18 +18,17 @@ function Cell(x, y) {
 
     this.status = 0;
 
-
+cc.log("CELL POPULATION");
     this._testsprite = new cc.Menu(menuItemPlay);  //7. create the menu
 
-    this._testsprite.setPosition(cc.p(size.width - menuItemPlay.getContentSize().width  - ((CELLX - x)*menuItemPlay.getContentSize().width) - ((menuItemPlay.getContentSize().width/2) * (y%2)) , size.height - (size.height/5) - (y*(menuItemPlay.getContentSize().height * 0.75)) ));
-
-    this._x = x;
-    this._y = y;
+    this._testsprite.setPosition(cc.p(size.width - menuItemPlay.getContentSize().width  - ((CELLX - y)*menuItemPlay.getContentSize().width)- ((menuItemPlay.getContentSize().width/2) * (x%2))  , size.height - (size.height/5) - (x*(menuItemPlay.getContentSize().height * 0.75)) ));
+//
+    //- ((menuItemPlay.getContentSize().width/2) * (y%2))
+    cc.log("Cell Position x="+this._x+"  y="+this._y+"  X="+this._testsprite.getPositionX() +"  Y ="+this._testsprite.getPositionY());
 
 }
 
 Cell.prototype._testsprite;
-Cell.prototype._hasBomb;
 Cell.prototype._hasHoney;
 
 Cell.prototype.getCellSprite = function() {
@@ -66,12 +66,13 @@ Cell.prototype.setCellSpritePos = function (x, y) {
     //cc.log();
     //cc.log(size.width - this._testsprite.getContentSize().width  - ((CELLX - x)*this._testsprite.getContentSize().width) - (this._testsprite.getContentSize().width * (x%2)) );
     //cc.log(size.height - (size.height/3) - ((CELLY - y)*this._testsprite.getContentSize().height) );
+   //cc.log("Cell POsition X="+cc.p(size.width - this._testsprite.getContentSize().width  - ((CELLX - x)*this._testsprite.getContentSize().width) - ((this._testsprite.getContentSize().width/2) * (y%2))+"  Y="+ size.height - (size.height/5) - (y*(this._testsprite.getContentSize().height * 0.75)) ));
     this._testsprite.setPosition(cc.p(size.width - this._testsprite.getContentSize().width  - ((CELLX - x)*this._testsprite.getContentSize().width) - ((this._testsprite.getContentSize().width/2) * (y%2)) , size.height - (size.height/5) - (y*(this._testsprite.getContentSize().height * 0.75)) ));
 
 
     //this._testsprite.setScale(0.5);
 
-    cc.log("Here");
+    //cc.log("Here");
 }
 
 Cell.prototype.count_bombs = function(c){
@@ -83,29 +84,50 @@ Cell.prototype.count_bombs = function(c){
     if (c.n5) result += c.n5.bomb;
     if (c.n6) result += c.n6.bomb;
     cc.log("Bombs"+result);
+
     return result;
 }
 
 Cell.prototype.on_cell_clicked = function(c){
-   // if (c.board.game_is_over) return;
-   // if (c.status == FLAG) return;
-   /* if (c.bomb==1){
-        c.image.src = IMAGE_BOMB_EXPLODED;
-        c.bomb=0;//?
-        c.board.gameover();
+    if (game_is_over) return;
+    if (c.status == 2) return;
+    if (c.bomb==1){
+cc.log("GAME OVER");
+        var sprite = new cc.Sprite.create(res.Cell_Bee_GameOver_png);
+        var children = c._testsprite.getChildren();
+       // cc.log("0 cell Child "+children[0]);
+        sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
+        children[0].addChild(sprite, 7);
+
+        //c.bomb=0;
+      //  c.parent.gameover();
         return;
     }
-*/
     c.status = 1;
+    var children = c._testsprite.getChildren();
+    children[0].enabled = false;
+    n_of_open_cells++;
 
 
+
+
+
+
+
+
+
+    //cc.log("0 Cell Just C " +c._x+"," + c._y + "Position"+ c._testsprite.getPositionX()+ " , "+c._testsprite.getPositionY());
   //  c.board.n_of_open_cells++;*/
 try {
+    cc.log("inside onclicl()");
     switch (c.count_bombs(c)) { //dá pra usar this em vez de ter que passar c ?
         case 0:
             var sprite = new cc.Sprite.create(res.CellEmpty_png);
+            if (c.honey==1){
+
+            }
             var children = c._testsprite.getChildren();
-            cc.log("0 cell Child "+children[0]);
+            //cc.log("0 cell Child "+children[0]);
             sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
             children[0].addChild(sprite, 7);
 
@@ -113,144 +135,166 @@ try {
             cc.log(menuItem);
             sprite.setPosition(cc.p(menuItem.getPositionX() + menuItem.getContentSize().width / 2, menuItem.getPositionY() + menuItem.getContentSize().height / 2));
             children[0].addChild(sprite, 7);*/
-
-            if (c.n1 && c.n1.status == 0) c.on_clicked(c.n1);
-            if (c.n2 && c.n2.status == 0) c.on_clicked(c.n2);
-            if (c.n3 && c.n3.status == 0) c.on_clicked(c.n3);
-            if (c.n4 && c.n4.status == 0) c.on_clicked(c.n4);
-            if (c.n5 && c.n5.status == 0) c.on_clicked(c.n5);
-            if (c.n6 && c.n6.status == 0) c.on_clicked(c.n6);
+//cc.log("0 Cell Just C " +c._x+"," + c._y );//+ "Position"+ c._testsprite.getPositionX()+ " , "+c._testsprite.getPositionY());
+            if (c.n1 && c.n1.status == 0) {
+                //cc.log(c._x+"," + c._y+"n1 " +c.n1._x+"," + c.n1._y);
+                c.on_cell_clicked(c.n1);
+            }
+            if (c.n2 && c.n2.status == 0) {
+                c.on_cell_clicked(c.n2);
+                //cc.log(c._x+"," + c._y+"n2 " +c.n2._x+"," + c.n2._y);
+            }
+            if (c.n3 && c.n3.status == 0){
+                c.on_cell_clicked(c.n3);
+                //cc.log(c._x+"," + c._y+"n3 " +c.n3._x+"," + c.n3._y);
+            }
+            if (c.n4 && c.n4.status == 0) {
+                c.on_cell_clicked(c.n4);
+                //cc.log(c._x+"," + c._y+"n4 " +c.n4._x+"," + c.n4._y);
+            }
+            if (c.n5 && c.n5.status == 0) {
+                c.on_cell_clicked(c.n5);
+                //cc.log(c._x+"," + c._y+"n5 " +c.n5._x+"," + c.n5._y);
+            }
+            if (c.n6 && c.n6.status == 0) {
+                c.on_cell_clicked(c.n6);
+                //cc.log(c._x+"," + c._y+"n6 " +c.n6._x+"," + c.n6._y);
+            }
             break;
         case 1:
             var sprite = new cc.Sprite.create(res.CellCount1_png);
             var children = c._testsprite.getChildren();
-            cc.log("1 cell Child "+children[0]);
+            //cc.log("1 cell Child Just C " +c._x+"," + c._y);
             sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
             children[0].addChild(sprite, 7);
             break;
         case 2:
             var sprite = new cc.Sprite.create(res.CellCount2_png);
             var children = c._testsprite.getChildren();
-            cc.log("2 cell Child "+children[0]);
+            //cc.log("2 cell Child Just C " +c._x+"," + c._y);
             sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
             children[0].addChild(sprite, 7);
             break;
         case 3:
             var sprite = new cc.Sprite.create(res.CellCount3_png);
             var children = c._testsprite.getChildren();
-            cc.log("3 cell Child "+children[0]);
+            //cc.log("3 cell Child Just C " +c._x+"," + c._y);
             sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
             children[0].addChild(sprite, 7);
             break;
         case 4:
             var sprite = new cc.Sprite.create(res.CellCount4_png);
             var children = c._testsprite.getChildren();
-            cc.log("4 cell Child "+children[0]);
+            //cc.log("4 cell Child Just C " +c._x+"," + c._y);
             sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
             children[0].addChild(sprite, 7);
             break;
         case 5:
             var sprite = new cc.Sprite.create(res.CellCount5_png);
             var children = c._testsprite.getChildren();
-            cc.log("5 cell Child "+children[0]);
+            //cc.log("5 cell Child Just C " +c._x+"," + c._y);
             sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
             children[0].addChild(sprite, 7);
             break;
         case 6:
             var sprite = new cc.Sprite.create(res.CellCount6_png);
             var children = c._testsprite.getChildren();
-            cc.log("6 cell Child "+children[0]);
+            //cc.log("6 cell Child Just C " +c._x+"," + c._y);
             sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
             children[0].addChild(sprite, 7);
             break;
+
+
+    }
+
+    if (c.honey==1){
+        cc.log("Honey!!!");
+        c.status = 0;
+        var children = c._testsprite.getChildren();
+        children[0].enabled = true;
+        n_of_open_cells--;
+
+            var sprite = new cc.Sprite.create(res.CellNormal_png);
+            var children = c._testsprite.getChildren();
+            //cc.log("3 cell Child Just C " +c._x+"," + c._y);
+            sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
+            children[0].addChild(sprite, 7);
+
+
+
+        //  c.parent.gameover();
+    }
+
+
+
+    if (n_of_open_cells + gCountBee == CELLX*CELLY) {
+        cc.log("YOU HAVE WON");
+        //c.board.win_game();
     }
 }catch(err){
     cc.log(err);
 }
-    //if (c.board.n_of_open_cells + c.board.n_of_bombs == c.board.xmax*c.board.ymax) c.board.win_game();
+
 }
 
 function onClick(cell,menuItem){
     try {
+
+        //cc.log("Clocked Cell Just C " +cell._x+"," + cell._y + "Position"+ cell._testsprite.getPositionX()+ " , "+cell._testsprite.getPositionY());
         if (gClickMode == consts.CLICK_MODE_OPEN) {
-            var sprite = new cc.Sprite.create(res.CellEmpty_png);
+            //var sprite = new cc.Sprite.create(res.CellEmpty_png);
             gCountOpen++;
-            if(true){//hasHoney
+            cell.status = 1; // else the state will remain flaged and cell click logic will not work
+            menuItem.enabled = false;
+            if(cell.honey){
+                cc.log(" HONEY CLICKED!!");
+                var sprite = new cc.Sprite.create(res.CellHoney_png);
+                var children = cell._testsprite.getChildren();
+                //cc.log("3 cell Child Just C " +c._x+"," + c._y);
+                sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
+                children[0].addChild(sprite, 8);
+                n_of_open_cells++;
+                gCountHoney++;
+                foundHoney(cell.board);
+
+            }
+            else {
+                cc.log("CELL CLICKED");
+                cell.on_cell_clicked(cell);
+            }
+            /*if(true){//hasHoney
                 var sprite = new cc.Sprite.create(res.CellHoney_png);
             gCountHoney++
-            }
+            }*/
         } else {
+           // var sprite = new cc.Sprite.create(res.CellBee_png);
             var sprite = new cc.Sprite.create(res.CellBee_png);
+            var children = cell._testsprite.getChildren();
+            //cc.log("3 cell Child Just C " +c._x+"," + c._y);
+            sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
+            children[0].addChild(sprite, 7);
+            cell.status=2;
             gCountBee++;
+            markBee(cell.board);
+        }
+     /*   for(var x=0; x < 10; x++){
+            for(var y = 0; y<10; y++){
+                cc.log("populated Value" +  _maps[x][y].bomb +"("+ x+","+y+")");
+            }
+        }*/
+        var splitTag = menuItem.getTag().split("_");
+        if(_maps[cell._x][cell._y].bomb){
+          //  cc.log("has bomb" + _maps[cell._x][cell._y].bomb);
+            var sprite = new cc.Sprite.create(res.CellBee_png);
+        } else if(_maps[cell._x][cell._y].honey){
+            var sprite = new cc.Sprite.create(res.CellHoney_png);
         }
 
-        cc.log("tag"+menuItem.getTag());
-        cc.log("x"+cell._x +" "+"y"+cell._y)
-cc.log("maps"+_maps[cell._x,cell._y].bomb);
-        cc.log("maps nei"+_maps[cell._x,cell._y].n1);
-        cc.log("maps honey"+_maps[cell._x,cell._y].getHasHoney());
-       // cc.log("cell"+cell.getHasHoney());
 
-        //sprite.setAnchorPoint(cc.p(0.5, 0.5));
 
-        var thisCell = _maps[cell._x,cell._y];
-        var children = _maps[cell._x,cell._y]._testsprite.getChildren();
-        cc.log("cell Child 1 Ini"+children[0].getTag());
-        sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+menuItem.getContentSize().height/2));
-        children[0].addChild(sprite, 7);
-
-/*
-        var children = _maps[1,0]._testsprite.getChildren();
-        cc.log("cell Child 2 Ini"+children[0].getTag());
-
-        var children = _maps[0,1]._testsprite.getChildren(9);
-        cc.log("cell Child 3 Ini"+children[0].getTag());
-        var thisCell = _maps[1,0];
-        var children = thisCell._testsprite.getChildren();
-        cc.log("cell Child"+children[0]);*/
-
-        thisCell.on_cell_clicked(thisCell);
+       // cell.on_cell_clicked(cell);
     }catch(err){
         cc.log(err);
     }
-    menuItem.enabled = false;
-
-
-
-
-    /*
-    if (c.bomb==1){
-        c.image.src = IMAGE_BOMB_EXPLODED;
-        c.bomb=0;//?
-        c.board.gameover();
-        return;
-    }*/
-
-  //  c.status = OPENED;
-
-   // c.board.n_of_open_cells++;
-  /*  cc.log(thisCell.count_bombs(thisCell));
-    switch (thisCell.count_bombs(thisCell)){
-        //dá pra usar this em vez de ter que passar c ?
-        case 0:
-            thisCell.image.src = IMAGE_VOID;
-             thisCell.on_clicked(thisCell.n1,);
-             thisCell.on_clicked(thisCell.n2);
-             thisCell.on_clicked(thisCell.n3);
-             thisCell.on_clicked(thisCell.n4);
-             thisCell.on_clicked(thisCell.n5);
-             thisCell.on_clicked(thisCell.n6);
-            break;
-        case 1: thisCell.image.src = IMAGE_1; break;
-        case 2: thisCell.image.src = IMAGE_2; break;
-        case 3: thisCell.image.src = IMAGE_3; break;
-        case 4: thisCell.image.src = IMAGE_4; break;
-        case 5: thisCell.image.src = IMAGE_5; break;
-        case 6: thisCell.image.src = IMAGE_6; break;
-    }*/
-  //  if (c.board.n_of_open_cells + c.board.n_of_bombs == c.board.xmax*c.board.ymax) c.board.win_game();
-
-
-
 
 }

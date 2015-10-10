@@ -13,15 +13,15 @@ var ForestLayer = cc.Layer.extend({
         // ask the window size
         var size = cc.winSize;
 //cc.log(size.width+","+size.height);
-        var sprite = new cc.Sprite.create(res.HelloWorld_png);
+        var sprite = new cc.Sprite.create(res.Forest_BG_png);
        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
         sprite.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(sprite, 0);
 try {
 
-    var item1 = cc.MenuItemImage.create(res.CellNormal_png, res.CellNormal_png, res.CellNormal_png, level1Run, this)
-    var item2 = cc.MenuItemImage.create(res.Level_enabled_png, res.Level_Selected_png, res.Level_disabled_png, level2Run, this)
-    var item3 = cc.MenuItemImage.create(res.Level_enabled_png, res.Level_Selected_png, res.Level_disabled_png, level3Run, this)
+    var item1 = cc.MenuItemImage.create(res.Cell_Bee_GameOver_png, res.CellBee_png, res.CellNormal_png, level1Run, this)
+    var item2 = cc.MenuItemImage.create(res.Cell_Bee_GameOver_png, res.CellBee_png, res.Level_disabled_png, level2Run, this)
+    var item3 = cc.MenuItemImage.create(res.Cell_Bee_GameOver_png, res.CellBee_png, res.Level_disabled_png, level3Run, this)
     cc.log("initializing ");
 
     var menuItem1 = new cc.MenuItemFont("Play Sound", this, this.playSound);
@@ -29,9 +29,9 @@ try {
     var menuItem3 = new cc.MenuItemFont("Stop Playing Song", this, this.stopPlayingSound);
    // var menuItem4 = new cc.MenuItemFont("Exit", this, this.exit);
 
-    item1.setPosition(cc.p(size.width/8 , size.height / 8));
-    item2.setPosition(cc.p(size.width/4 , size.height / 4));
-    item3.setPosition(cc.p(size.width/2 , size.height / 2 ));
+    item1.setPosition(cc.p(size.width *0.25 , size.height *0.3));
+    item2.setPosition(cc.p(size.width*0.4 , size.height *0.7));
+    item3.setPosition(cc.p(size.width*0.6 , size.height *0.4 ));
     //menuItem4.setPosition(new cc.Point(size.width / 2, size.height / 2 - 100));
     cc.log("Setting POsition ");
     var menu = cc.Menu.create(item1, item2, item3);

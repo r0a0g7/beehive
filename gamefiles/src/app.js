@@ -13,12 +13,12 @@ var HelloWorldLayer = cc.Layer.extend({
         // ask the window size
         var size = cc.winSize;
 
-        var sprite = new cc.Sprite.create(res.HelloWorld_png);
+        var sprite = new cc.Sprite.create(res.Forest_BG_png);
         sprite.setAnchorPoint(cc.p(0.5, 0.5));
         sprite.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(sprite, 0);
 
-        var item1 = cc.MenuItemImage.create(res.CellNormal_png, res.CellNormal_png, res.CellNormal_png,startGame, this);
+        var item1 = cc.MenuItemImage.create(res.StartButton_png, res.StartButtonPressed_png, res.CellNormal_png,startGame, this);
         item1.setPosition(cc.p(size.width/2 , size.height / 2 + 50));
         var menu = cc.Menu.create(item1);
         menu.setPosition(cc.p(0, 0));
