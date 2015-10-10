@@ -3,6 +3,8 @@
 function Cell(x, y) {
 
     var size = cc.winSize;
+    this._x=x;
+    this._y=y;
     var menuItemPlay = new cc.MenuItemSprite(
         new cc.Sprite(res.CellNormal_png), // normal state image
         new cc.Sprite(res.CellPressed_png), // select state image
@@ -17,15 +19,12 @@ function Cell(x, y) {
     this._testsprite = new cc.Menu(menuItemPlay);  //7. create the menu
 
     this._testsprite.setPosition(cc.p(size.width - menuItemPlay.getContentSize().width  - ((CELLX - x)*menuItemPlay.getContentSize().width) - ((menuItemPlay.getContentSize().width/2) * (y%2)) , size.height - (size.height/5) - (y*(menuItemPlay.getContentSize().height * 0.75)) ));
-    this._x = x;
-    this._y = y;
+
 
 }
 
 Cell.prototype._testsprite;
-Cell.prototype._hasBomb;
 Cell.prototype._hasHoney;
-Cell.prototype.bomb;
 
 Cell.prototype.getCellSprite = function() {
     //cc.log("getPLayerSprite");
@@ -40,36 +39,6 @@ Cell.prototype.setHasHoney = function(){
     this._hasHoney = 1;
 }
 
-Cell.prototype.setHasbomb = function(bombvalue){
-    this.bomb = bombvalue;
-}
-
-Cell.prototype.gethasBomb = function() {
-    //cc.log("getPLayerSprite");
-    return this.bomb;
-}
-
-Cell.prototype.setCellSpritePos = function (x, y) {
-   // this._testsprite.setAnchorPoint(cc.p(0.5, 0.5));
-
-    var size = cc.winSize;
-    this._testsprite.getContentSize();
-    //cc.p(size.width / 2, size.height / 2);
-    //cc.log(x+","+ y);
-    //cc.log(size.width+","+size.height );
-   // cc.log();
-    //cc.log(this._testsprite.getContentSize().width+","+this._testsprite.getContentSize().height);
-    //cc.log();
-    //cc.log(size.width - this._testsprite.getContentSize().width  - ((CELLX - x)*this._testsprite.getContentSize().width) - (this._testsprite.getContentSize().width * (x%2)) );
-    //cc.log(size.height - (size.height/3) - ((CELLY - y)*this._testsprite.getContentSize().height) );
-    this._testsprite.setPosition(cc.p(size.width - this._testsprite.getContentSize().width  - ((CELLX - x)*this._testsprite.getContentSize().width) - ((this._testsprite.getContentSize().width/2) * (y%2)) , size.height - (size.height/5) - (y*(this._testsprite.getContentSize().height * 0.75)) ));
-
-
-    //this._testsprite.setScale(0.5);
-
-    cc.log("Here");
-}
-
 function onClick(currentCell, menuItem){
     try {
         if (gClickMode == consts.CLICK_MODE_OPEN) {
@@ -79,10 +48,17 @@ function onClick(currentCell, menuItem){
             var sprite = new cc.Sprite.create(res.CellBee_png);
             gCountBee++;
         }
-        var splitTag = menuItem.getTag().split("_")
-        if(_maps[splitTag[0], splitTag[1]].bomb){
-            cc.log("has bomb" + _maps[splitTag[0], splitTag[1]].bomb);
-            var sprite = new cc.Sprite.create(res.Cell_Selected);
+        for(var x=0; x < 10; x++){
+            for(var y = 0; y<10; y++){
+                cc.log("populated Value" +  _maps[x][y].bomb +"("+ x+","+y+")");
+            }
+        }
+        var splitTag = menuItem.getTag().split("_");
+        if(_maps[splitTag[0]][splitTag[1]].bomb){
+            cc.log("has bomb" + _maps[splitTag[0]][splitTag[1]].bomb);
+            var sprite = new cc.Sprite.create(res.CellBee_png);
+        } else if(_maps[splitTag[0]][splitTag[1]].honey){
+            var sprite = new cc.Sprite.create(res.CellHoney_png);
         }
 
         cc.log(menuItem.getTag());
