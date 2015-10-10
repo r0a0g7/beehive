@@ -25,16 +25,6 @@ var BoardLayer = cc.Layer.extend({
        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
         sprite.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(sprite, 0);
-        /*var menuItemPlay = new cc.MenuItemSprite(
-            new cc.Sprite(res.ck2), // normal state image
-            new cc.Sprite(res.ck2), // select state image
-            this.onPlay, this);
-
-
-        var menuItem1 = new cc.MenuItemFont("Pop", pop);
-        var menu = new cc.Menu(menuItem1);
-        menu.alignItemsVertically();
-        this.addChild(menu, 1);*/
 
         return true;
     },
@@ -43,12 +33,12 @@ var BoardLayer = cc.Layer.extend({
         try {
 
             var cell = new Cell(x,y);
-            var size = cc.winSize;
-            cc.p(size.width / 2, size.height / 2);
+            //var size = cc.winSize;
+            //cc.p(size.width / 2, size.height / 2);
+            //
+            //cell.setCellSpritePos(x,y);
 
-            cell.setCellSpritePos(x,y);
-
-            cell.setUpEventListner();
+           // cell.setUpEventListner();
 
             this.addChild(cell.getCellSprite(), 3);
 
@@ -63,18 +53,6 @@ var BoardLayer = cc.Layer.extend({
     }
 
 });
-/*
-var pop = function()
-{
-    INITIALIZED_2 = false;
-    cc.director.popScene();
-
-};
-
-
-*/
-
-
 
 
 var BoardScene = cc.Scene.extend({
