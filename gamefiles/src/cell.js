@@ -3,14 +3,13 @@
 function Cell(x, y) {
 
     var size = cc.winSize;
-
     var menuItemPlay = new cc.MenuItemSprite(
         new cc.Sprite(res.CellNormal_png), // normal state image
         new cc.Sprite(res.CellPressed_png), // select state image
         function(menuItem){
             cc.log("Tag "+menuItem.getTag());
            // menuItem.selected = true;
-            onClick(menuItem);
+            onClick(this,menuItem);
         }, this);
     menuItemPlay.setTag(x+"_"+y);
 
@@ -18,7 +17,6 @@ function Cell(x, y) {
     this._testsprite = new cc.Menu(menuItemPlay);  //7. create the menu
 
     this._testsprite.setPosition(cc.p(size.width - menuItemPlay.getContentSize().width  - ((CELLX - x)*menuItemPlay.getContentSize().width) - ((menuItemPlay.getContentSize().width/2) * (y%2)) , size.height - (size.height/5) - (y*(menuItemPlay.getContentSize().height * 0.75)) ));
-
     this._x = x;
     this._y = y;
 
@@ -27,6 +25,7 @@ function Cell(x, y) {
 Cell.prototype._testsprite;
 Cell.prototype._hasBomb;
 Cell.prototype._hasHoney;
+Cell.prototype.bomb;
 
 Cell.prototype.getCellSprite = function() {
     //cc.log("getPLayerSprite");
@@ -41,15 +40,15 @@ Cell.prototype.setHasHoney = function(){
     this._hasHoney = 1;
 }
 
-Cell.prototype.gethasBomb = function() {
-    //cc.log("getPLayerSprite");
-    return this._hasBomb;
+Cell.prototype.setHasbomb = function(bombvalue){
+    this.bomb = bombvalue;
 }
 
-Cell.prototype.sethasBomb = function() {
+Cell.prototype.gethasBomb = function() {
     //cc.log("getPLayerSprite");
-    this._hasBomb = 1;
+    return this.bomb;
 }
+
 Cell.prototype.setCellSpritePos = function (x, y) {
    // this._testsprite.setAnchorPoint(cc.p(0.5, 0.5));
 
@@ -71,7 +70,7 @@ Cell.prototype.setCellSpritePos = function (x, y) {
     cc.log("Here");
 }
 
-function onClick(menuItem){
+function onClick(currentCell, menuItem){
     try {
         if (gClickMode == consts.CLICK_MODE_OPEN) {
             var sprite = new cc.Sprite.create(res.CellPressed_png);
@@ -79,6 +78,11 @@ function onClick(menuItem){
         } else {
             var sprite = new cc.Sprite.create(res.CellBee_png);
             gCountBee++;
+        }
+        var splitTag = menuItem.getTag().split("_")
+        if(_maps[splitTag[0], splitTag[1]].bomb){
+            cc.log("has bomb" + _maps[splitTag[0], splitTag[1]].bomb);
+            var sprite = new cc.Sprite.create(res.Cell_Selected);
         }
 
         cc.log(menuItem.getTag());
