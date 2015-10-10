@@ -1,6 +1,7 @@
 var CELLX = 10;
 var CELLY = 10;
 var PERCENTAGE = 0.1;
+var NO_OF_HONEY = 5;
 var _maps = new Array;
 var BoardLayer = cc.Layer.extend({
     sprite:null,
@@ -111,6 +112,28 @@ var BoardLayer = cc.Layer.extend({
                 }
             }
         }
+    },
+
+    fixHoney : function(){
+
+        this.n_of_honey=0;
+        this.n_of_flags = 0;
+        this.n_of_open_cells = 0;
+        for (var x=0;x<this.CELLX;x++){
+            for (var y=0;y< this.CELLY;y++){
+                this.map[x][y].init();
+                //this.map[x][y].honey = 0;
+                if(this.map[x][y].gethasBomb() ==0) {
+                    if (Math.random() < 0.5 && this.n_of_honey < this.NO_OF_HONEY) {
+                        this.map[x][y].honey = 1;
+                        this.n_of_honey++;
+                    } else {
+                        this.map[x][y].honey = 0;
+                    }
+                }
+            }
+        }
+
     }
 
 });
