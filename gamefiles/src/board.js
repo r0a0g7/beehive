@@ -1,6 +1,6 @@
 var CELLX = 10;
 var CELLY = 10;
-var PERCENTAGE = 0.1;
+var PERCENTAGE = 0.5;
 
 var consts = {};
 consts.CLICK_MODE_OPEN = 1;
@@ -28,6 +28,7 @@ var BoardLayer = cc.Layer.extend({
 
         this.neighbourLogic();
         this.fixBees();
+        this.fixHoney();
 
 
         var size = cc.winSize;
@@ -52,6 +53,14 @@ var BoardLayer = cc.Layer.extend({
         var menu2 = new cc.Menu(menuItemOpenBtn);  //7. create the menu
         menu2.setPosition(cc.p(size.width *0.1, size.height*0.35));
         this.addChild(menu2);
+
+        var beeCount = new cc.LabelTTF.create(gCountBee+"/"+this.n_of_bombs, "Helvetica", 25);
+        beeCount.setPosition(cc.p(size.width * 0.9,  size.height * 0.9));
+        this.addChild(beeCount,4);
+
+        var honeyCount = new cc.LabelTTF.create(gCountHoney+"/"+ NO_OF_HONEY, "Helvetica", 25);
+        honeyCount.setPosition(cc.p(size.width * 0.95,  size.height * 0.9));
+        this.addChild(honeyCount,4);
 
         return true;
     },
@@ -133,13 +142,13 @@ var BoardLayer = cc.Layer.extend({
         for (var x=0;x<CELLX;x++){
             cc.log("Inside Bee for");
             for (var y=0;y<CELLY;y++){
-                cc.log("Inside Bee function");
+                //cc.log("Inside Bee function");
                 if (Math.random() < PERCENTAGE){
                     _maps[x, y].bomb=1;
-                    cc.log("Bee value"+_maps[x, y].bomb );
+                    cc.log("Bee value"+x+" "+y );
                     this.n_of_bombs++;
                 } else {
-                    cc.log("Bee value"+_maps[x, y].bomb );
+                   // cc.log("Bee value"+_maps[x, y].bomb );
                     _maps[x, y].bomb=0;
                 }
             }
@@ -151,16 +160,16 @@ var BoardLayer = cc.Layer.extend({
         this.n_of_honey=0;
         this.n_of_flags = 0;
         this.n_of_open_cells = 0;
-        for (var x=0;x<this.CELLX;x++){
-            for (var y=0;y< this.CELLY;y++){
-                this.map[x][y].init();
+        for (var x=0;x<CELLX;x++){
+            for (var y=0;y< CELLY;y++){
+
                 //this.map[x][y].honey = 0;
-                if(this.map[x][y].gethasBomb() ==0) {
+                if(_maps[x,y].gethasBomb() ==0) {
                     if (Math.random() < 0.5 && this.n_of_honey < this.NO_OF_HONEY) {
-                        this.map[x][y].honey = 1;
+                        _maps[x,y].setHasHoney(1);// = 1;
                         this.n_of_honey++;
                     } else {
-                        this.map[x][y].honey = 0;
+                        _maps[x,y].setHasHoney(0);// = 0;
                     }
                 }
             }

@@ -12,6 +12,8 @@ var res = {
     CellCount4_png   : "res/Cell_count04.png",
     CellCount5_png   : "res/Cell_count05.png",
     CellCount6_png   : "res/Cell_count06.png",
+    CellEmpty_png :"res/Cell_Empty.png",
+    Cell_Selected_png :"res/Cell_Selected.png",
 
     BG_png:"res/BG.png",
     Forest_BG_png:"res/ForestBG.png",
