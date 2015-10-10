@@ -1,32 +1,35 @@
 var CELLX = 10;
 var CELLY = 10;
 var PERCENTAGE = 0.1;
+
+var consts = {};
+consts.CLICK_MODE_OPEN = 1;
+consts.CLICK_MODE_BEE = 2;
+
+var gClickMode = consts.CLICK_MODE_OPEN;
+var gCountOpen = 0;
+var gCountBee = 0;
+var gCountHoney = 0;
+
 var NO_OF_HONEY = 5;
 var _maps = new Array;
 var BoardLayer = cc.Layer.extend({
     sprite:null,
 
     ctor:function () {
-        //////////////////////////////
-        // 1. super init first
 
             this._super();
-            //this._maps = new Array;
 
             for (i = 0; i < CELLX; i++) {
-
                 for (j = 0; j < CELLY; j++) {
-
                     this.addCell(i, j);
                 }
             }
 
         this.neighbourLogic();
         this.fixBees();
-        /////////////////////////////
-        // 2. add a menu item with "X" image, which is clicked to quit the program
-        //    you may modify it.
-        // ask the window size
+
+
         var size = cc.winSize;
 
        var sprite = new cc.Sprite.create(res.HelloWorld_png);
@@ -34,7 +37,31 @@ var BoardLayer = cc.Layer.extend({
         sprite.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(sprite, 0);
 
+        var menuItemBeeBtn = new cc.MenuItemSprite(
+            new cc.Sprite(res.CellBee_png), // normal state image
+            new cc.Sprite(res.CellBee_png), // select state image
+            this.onMarkBee, this);
+        var menu = new cc.Menu(menuItemBeeBtn);  //7. create the menu
+        menu.setPosition(cc.p(size.width *0.1, size.height*0.2));
+        this.addChild(menu);
+
+        var menuItemOpenBtn = new cc.MenuItemSprite(
+            new cc.Sprite(res.CellPressed_png), // normal state image
+            new cc.Sprite(res.CellPressed_png), // select state image
+            this.onMarkOpen, this);
+        var menu2 = new cc.Menu(menuItemOpenBtn);  //7. create the menu
+        menu2.setPosition(cc.p(size.width *0.1, size.height*0.35));
+        this.addChild(menu2);
+
         return true;
+    },
+
+    onMarkBee : function() {
+        gClickMode = consts.CLICK_MODE_BEE;
+    },
+
+    onMarkOpen : function() {
+        gClickMode = consts.CLICK_MODE_OPEN;
     },
 
     addCell : function(x,y) {

@@ -13,7 +13,7 @@ function Cell(x, y) {
            // menuItem.selected = true;
             onClick(menuItem);
         }, this);
-    menuItemPlay.setTag(i);
+    menuItemPlay.setTag(x+"_"+y);
 
 
     this._testsprite = new cc.Menu(menuItemPlay);  //7. create the menu
@@ -74,7 +74,14 @@ Cell.prototype.setCellSpritePos = function (x, y) {
 
 function onClick(menuItem){
     try {
-        var sprite = new cc.Sprite.create(res.CellPressed_png);
+        if (gClickMode == consts.CLICK_MODE_OPEN) {
+            var sprite = new cc.Sprite.create(res.CellPressed_png);
+            gCountOpen++;
+        } else {
+            var sprite = new cc.Sprite.create(res.CellBee_png);
+            gCountBee++;
+        }
+
         //sprite.setAnchorPoint(cc.p(0.5, 0.5));
 
         sprite.setPosition(cc.p(menuItem.getPositionX()+menuItem.getContentSize().width/2, menuItem.getPositionY()+menuItem.getContentSize().height/2));
