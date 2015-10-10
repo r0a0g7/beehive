@@ -7,7 +7,6 @@ function Cell(x, y) {
     var menuItemPlay = new cc.MenuItemSprite(
         new cc.Sprite(res.CellNormal_png), // normal state image
         new cc.Sprite(res.CellPressed_png), // select state image
-        new cc.Sprite(res.CellDisabled_png), // select disabled image
         function(menuItem){
             cc.log("Tag "+menuItem.getTag());
            // menuItem.selected = true;
@@ -81,6 +80,8 @@ function onClick(menuItem){
             var sprite = new cc.Sprite.create(res.CellBee_png);
             gCountBee++;
         }
+
+        cc.log(menuItem.getTag());
 
         //sprite.setAnchorPoint(cc.p(0.5, 0.5));
 
