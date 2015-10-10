@@ -1,17 +1,20 @@
 var CELLX = 10;
 var CELLY = 10;
-
+var _maps = new Array;
 var BoardLayer = cc.Layer.extend({
     sprite:null,
+
     ctor:function () {
         //////////////////////////////
         // 1. super init first
 
             this._super();
-            this._cells = new Array;
+            //this._maps = new Array;
 
             for (i = 0; i < CELLX; i++) {
+
                 for (j = 0; j < CELLY; j++) {
+
                     this.addCell(i, j);
                 }
             }
@@ -45,7 +48,10 @@ var BoardLayer = cc.Layer.extend({
             this.addChild(cell.getCellSprite(), 3);
 
             //cc.log("Adding PLayer");
-            this._cells.push(cell);
+            _maps[x, y] = cell;
+            cc.log(_maps[x, y]);
+            _maps[x,y].sethasMoved();
+            cc.log(_maps[x,y].gethasMoved());
 
         }
         catch (err) {

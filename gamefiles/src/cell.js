@@ -33,6 +33,16 @@ Cell.prototype.getCellSprite = function() {
     //cc.log("getPLayerSprite");
     return this._testsprite;
 }
+
+Cell.prototype.gethasMoved = function() {
+    //cc.log("getPLayerSprite");
+    return this._hasMoved;
+}
+
+Cell.prototype.sethasMoved = function() {
+    //cc.log("getPLayerSprite");
+    this._hasMoved = true;
+}
 Cell.prototype.setCellSpritePos = function (x, y) {
    // this._testsprite.setAnchorPoint(cc.p(0.5, 0.5));
 
@@ -55,5 +65,14 @@ Cell.prototype.setCellSpritePos = function (x, y) {
 }
 
 function onClick(menuItem){
+    try {
+        var sprite = new cc.Sprite.create(res.CellPressed_png);
+        //sprite.setAnchorPoint(cc.p(0.5, 0.5));
+
+        sprite.setPosition(cc.p(menuItem.getPositionX()+menuItem.getContentSize().width/2, menuItem.getPositionY()+menuItem.getContentSize().height/2));
+        menuItem.addChild(sprite, 7);
+    }catch(err){
+        cc.log(err);
+    }
     menuItem.enabled = false;
 }
