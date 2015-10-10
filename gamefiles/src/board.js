@@ -6,14 +6,16 @@ var BoardLayer = cc.Layer.extend({
     ctor:function () {
         //////////////////////////////
         // 1. super init first
-        this._super();
-        this._cells = new Array;
 
-        for (i = 0; i < CELLX; i++) {
-            for(j=0;j< CELLY ;j++) {
-                this.addCell(i, j);
+            this._super();
+            this._cells = new Array;
+
+            for (i = 0; i < CELLX; i++) {
+                for (j = 0; j < CELLY; j++) {
+                    this.addCell(i, j);
+                }
             }
-        }
+
 
         /////////////////////////////
         // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -53,6 +55,18 @@ var BoardLayer = cc.Layer.extend({
     }
 
 });
+/*
+var pop = function()
+{
+    INITIALIZED_2 = false;
+    cc.director.popScene();
+
+};
+
+
+*/
+
+
 
 
 var BoardScene = cc.Scene.extend({
