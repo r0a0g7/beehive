@@ -88,10 +88,39 @@ var BoardLayer = cc.Layer.extend({
         }
     },
     neighbourLogic : function() {
-        cc.log("Inside neighbour function");
-        for (var x=0; x<CELLX;x++){
+        for (var x=0;x<CELLX;x++){
             for (var y=0;y<CELLY;y++){
-                _maps[x, y].bomb = 2;
+                var countNeighbout=0;
+
+                var c = _maps[x,y];
+
+                if (x>0) {
+                    c.n1 = _maps[x-1,y];
+                    if (y<CELLY-1 && x%2==0) {
+                        c.n2 = _maps[x - 1,y + 1];
+                    } else if (y>0 && x%2==1) {
+                        c.n2 = _maps[x - 1,y - 1];
+                    }
+                }
+
+                if (x<CELLX-1) {
+                    c.n3 = _maps[x+1,y];
+
+                    if(y<CELLY-1 && x%2==0) {
+                        c.n4 = _maps[x+1,y+1];
+                    } else if (y>0 && x%2==1) {
+                        c.n4 = _maps[x+1,y-1];
+                    }
+                }
+
+                if (y<CELLY-1) {
+                    c.n5 = _maps[x,y+1];
+                }
+
+                if (y>0) {
+                    c.n6 = _maps[x,y - 1];
+                }
+
             }
         }
     },
