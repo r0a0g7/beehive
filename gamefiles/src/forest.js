@@ -12,8 +12,8 @@ var ForestLayer = cc.Layer.extend({
         //    you may modify it.
         // ask the window size
         var size = cc.winSize;
-cc.log(size.width+","+size.height);
-        var sprite = new cc.Sprite.create(res.CloseNormal_png);
+//cc.log(size.width+","+size.height);
+        var sprite = new cc.Sprite.create(res.HelloWorld_png);
        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
         sprite.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(sprite, 0);
@@ -29,9 +29,9 @@ try {
     var menuItem3 = new cc.MenuItemFont("Stop Playing Song", this, this.stopPlayingSound);
    // var menuItem4 = new cc.MenuItemFont("Exit", this, this.exit);
 
-    item1.setPosition(cc.p(size.width/2 , size.height / 2 + 50));
-    item2.setPosition(cc.p(size.width/2 , size.height / 2));
-    item3.setPosition(cc.p(size.width/2 , size.height / 2 - 50));
+    item1.setPosition(cc.p(size.width/8 , size.height / 8));
+    item2.setPosition(cc.p(size.width/4 , size.height / 4));
+    item3.setPosition(cc.p(size.width/2 , size.height / 2 ));
     //menuItem4.setPosition(new cc.Point(size.width / 2, size.height / 2 - 100));
     cc.log("Setting POsition ");
     var menu = cc.Menu.create(item1, item2, item3);
@@ -74,11 +74,7 @@ var level3Run = function()
     var scene = new BoardScene();
     cc.director.runScene(scene);
 };
-var play = function()
-{
-    var scene = new BoardScene();
-    cc.director.runScene(scene);
-};
+
 
 var ForestScene = cc.Scene.extend({
     onEnter:function () {
