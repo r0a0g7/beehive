@@ -2,9 +2,24 @@
 
 function Cell(x, y) {
 
-    this._testsprite =   cc.Sprite.create(res.CellNormal_png);
-    this._hasMoved = false;
-    this._hasBall = false;
+    var size = cc.winSize;
+
+    var menuItemPlay = new cc.MenuItemSprite(
+        new cc.Sprite(res.CellNormal_png), // normal state image
+        new cc.Sprite(res.CellPressed_png), // select state image
+        new cc.Sprite(res.CellDisabled_png), // select disabled image
+        function(menuItem){
+            cc.log("Tag "+menuItem.getTag());
+           // menuItem.selected = true;
+            onClick(menuItem);
+        }, this);
+    menuItemPlay.setTag(i);
+
+
+    this._testsprite = new cc.Menu(menuItemPlay);  //7. create the menu
+
+    this._testsprite.setPosition(cc.p(size.width - menuItemPlay.getContentSize().width  - ((CELLX - x)*menuItemPlay.getContentSize().width) - ((menuItemPlay.getContentSize().width/2) * (y%2)) , size.height - (size.height/5) - (y*(menuItemPlay.getContentSize().height * 0.75)) ));
+
     this._x = x;
     this._y = y;
 
@@ -38,20 +53,7 @@ Cell.prototype.setCellSpritePos = function (x, y) {
 
     cc.log("Here");
 }
-Cell.prototype.setHasMoved = function (bool) {
 
-    this._hasMoved = bool;
-}
-Cell.prototype.setHasBall = function (bool) {
-
-    this._hasBall = bool;
-}
-
-Cell.prototype.getHasMoved = function() {
-
-    return this._hasMoved;
-}
-Cell.prototype.getHasBall = function() {
-
-    return this._hasBall;
+function onClick(menuItem){
+    menuItem.enabled = false;
 }

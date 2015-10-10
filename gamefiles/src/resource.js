@@ -3,6 +3,8 @@ var res = {
 
     CloseNormal_png : "res/StartScreen.png",
     CellNormal_png : "res/Cell_Empty.png",
+    CellPressed_png : "res/Cell_Closed.png",
+    CellDisabled_png : "res/Cell_Honey.png",
     BG_png:"res/BG.png",
     Forest_BG_png:"res/ForestBG.png",
     Level_disabled_png:"res/Level_disabled.png",
