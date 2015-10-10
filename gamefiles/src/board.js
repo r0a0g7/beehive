@@ -19,7 +19,8 @@ var BoardLayer = cc.Layer.extend({
                 }
             }
 
-
+        this.neighbourLogic();
+        this.fixBees();
         /////////////////////////////
         // 2. add a menu item with "X" image, which is clicked to quit the program
         //    you may modify it.
@@ -58,19 +59,61 @@ var BoardLayer = cc.Layer.extend({
             cc.log("inside catch");
             cc.log(err);
         }
+    },
+    neighbourLogic : function() {
+        for (var x=0;x<this.CELLX;CELLX++){
+            for (var y=0;y<this.CELLY;CELLY++){
+                var c = this.map[x][y];
+                if (x>0){
+                    c.n1 = this.map[x-1][y];
+                    if (y>0)
+                        c.n2 = this.map[x-1][y-1];
+                    if (y<ymax-1)
+                        c.n3 = this.map[x-1][y+1];
+                }
+                if (y>0)
+                    c.n4 = this.map[x][y-1];
+                if (y<this.ymax-1)
+                    c.n5 = this.map[x][y+1];
+                if (x<this.xmax-1)
+                    c.n6 = this.map[x+1][y];
+
+                //odd lines:
+                if (y%2){
+                    if (x<this.xmax-1){
+                        if (y>0)
+                            c.n2 = this.map[x+1][y-1];
+                        if (y<this.ymax-1)
+                            c.n3 = this.map[x+1][y+1];
+                    } else {
+                        c.n2 = false;
+                        c.n3 = false;
+                    }
+                }
+            }
+        }
+    },
+
+    fixBees : function() {
+
+        this.n_of_bombs=0;
+        this.n_of_flags = 0;
+        this.n_of_open_cells = 0;
+        for (var x=0;x<this.xmax;x++){
+            for (var y=0;y< this.ymax;y++){
+                this.map[x][y].init();
+                if (Math.random() < this.PERCENTAGE){
+                    this.map[x][y].bomb=1;
+                    this.n_of_bombs++;
+                } else {
+                    this.map[x][y].bomb=0;
+                }
+            }
+        }
     }
 
 });
-/*
-var pop = function()
-{
-    INITIALIZED_2 = false;
-    cc.director.popScene();
 
-};
-
-
-*/
 
 
 
