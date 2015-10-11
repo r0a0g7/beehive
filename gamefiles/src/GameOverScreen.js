@@ -37,6 +37,9 @@ var GameOverLayer = cc.Layer.extend({
 var gotoMap = function()
 {
     cc.log("gameover to map");
+    gCountOpen = 0;
+    gCountBee = 0;
+    gCountHoney = 0;
     INITIALIZED_1=false;
     var scene = new ForestScene();
     cc.director.runScene(scene);
@@ -45,6 +48,9 @@ var gotoMap = function()
 var restartGame = function()
 {
     cc.log("gameover to game");
+    gCountOpen = 0;
+    gCountBee = 0;
+    gCountHoney = 0;
     var scene = new BoardScene();
     cc.director.pushScene(scene);
 };

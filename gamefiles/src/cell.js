@@ -254,6 +254,10 @@ function onClick(cell,menuItem){
                 n_of_open_cells++;
                 gCountHoney++;
                 foundHoney(cell.board);
+                if(gCountHoney >= NO_OF_HONEY){
+                    cc.log("honey clicked and honey num"+gCountHoney +"need->" + NO_OF_HONEY);
+                    goBactToLevelSelector();
+                }
 
             }
             else {
