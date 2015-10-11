@@ -27,7 +27,7 @@ function Cell(x, y) {
         //this.addChild(scoreSprite, 1);*/
 
     this._testsprite =  new cc.Menu(menuItemPlay);
-    this._testsprite.setPosition(cc.p(size.width - menuItemPlay.getContentSize().width  - ((CELLX - y)*menuItemPlay.getContentSize().width)- ((menuItemPlay.getContentSize().width/2) * (x%2))  , size.height - (size.height/5) - (x*(menuItemPlay.getContentSize().height * 0.75)) ));
+    this._testsprite.setPosition(cc.p(size.width  - ((CELLX - y)*menuItemPlay.getContentSize().width)- ((menuItemPlay.getContentSize().width/2) * (x%2))  , size.height - (size.height/5) - (x*(menuItemPlay.getContentSize().height * 0.75)) ));
  //7. create the menu
 //this._testsprite.setPosition(cc.p(size.width * 0.125, size.height * 0.7));
   
@@ -75,7 +75,7 @@ Cell.prototype.setCellSpritePos = function (x, y) {
     //cc.log(size.width - this._testsprite.getContentSize().width  - ((CELLX - x)*this._testsprite.getContentSize().width) - (this._testsprite.getContentSize().width * (x%2)) );
     //cc.log(size.height - (size.height/3) - ((CELLY - y)*this._testsprite.getContentSize().height) );
    //cc.log("Cell POsition X="+cc.p(size.width - this._testsprite.getContentSize().width  - ((CELLX - x)*this._testsprite.getContentSize().width) - ((this._testsprite.getContentSize().width/2) * (y%2))+"  Y="+ size.height - (size.height/5) - (y*(this._testsprite.getContentSize().height * 0.75)) ));
-    this._testsprite.setPosition(cc.p(size.width - this._testsprite.getContentSize().width  - ((CELLX - x)*this._testsprite.getContentSize().width) - ((this._testsprite.getContentSize().width/2) * (y%2)) , size.height - (size.height/5) - (y*(this._testsprite.getContentSize().height * 0.75)) ));
+    this._testsprite.setPosition(cc.p(size.width   - ((CELLX - x)*this._testsprite.getContentSize().width) - ((this._testsprite.getContentSize().width/2) * (y%2)) , size.height - (size.height/5) - (y*(this._testsprite.getContentSize().height * 0.75)) ));
 
 
     //this._testsprite.setScale(0.5);
@@ -100,6 +100,8 @@ Cell.prototype.on_cell_clicked = function(c){
     if (game_is_over) return;
     if (c.status == 2) return;
     if (c.bomb==1){
+         cc.audioEngine.playEffect(res.Bee_mp3);
+        
 cc.log("GAME OVER");
         var sprite = new cc.Sprite(res.Cell_Bee_GameOver_png);
         var children = c._testsprite.getChildren();
@@ -120,7 +122,7 @@ cc.log("GAME OVER");
 
 
 
-
+cc.audioEngine.playEffect(res.openCell_mp3);
 
 
 
@@ -248,6 +250,7 @@ try {
 
 function onClick(cell,menuItem){
     try {
+        cc.audioEngine.playEffect(res.select_mp3);
 
         //cc.log("Clocked Cell Just C " +cell._x+"," + cell._y + "Position"+ cell._testsprite.getPositionX()+ " , "+cell._testsprite.getPositionY());
         if (gClickMode == 1) {
@@ -265,6 +268,8 @@ function onClick(cell,menuItem){
 
             if(cell.honey){
                 cc.log(" HONEY CLICKED!!");
+                cc.audioEngine.playEffect(res.Honey_mp3);
+                //cc.audioEngine.playEffect(res.Slurp_mp3);
                 var sprite = new cc.Sprite(res.CellHoney_png);
                 var children = cell._testsprite.getChildren();
                 //cc.log("3 cell Child Just C " +c._x+"," + c._y);
@@ -274,7 +279,9 @@ function onClick(cell,menuItem){
                 gCountHoney++;
                 foundHoney(cell.board);
                 if(gCountHoney >= NO_OF_HONEY){
+                    cc.audioEngine.playEffect(res.Win_mp3);
                     cc.log("honey clicked and honey num"+gCountHoney +"need->" + NO_OF_HONEY);
+
                     goBactToLevelSelector();
                 }
 

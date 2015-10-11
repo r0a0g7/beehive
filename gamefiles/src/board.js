@@ -60,7 +60,7 @@ gCountHoney = 0;
         var dummySprite =new cc.Sprite(res.CellNormal_png);
         var boardSprite = new cc.Sprite(res.BeeHive_BG_png);
         // sprite.setAnchorPoint(cc.p(0.5, 0.5));
-        boardSprite.setPosition(cc.p(_maps[4][4]._testsprite.getPositionX()+dummySprite.getContentSize().width/4, _maps[CELLX/2][CELLY/2]._testsprite.getPositionY()+dummySprite.getContentSize().height * 0.3));
+        boardSprite.setPosition(cc.p(_maps[4][4]._testsprite.getPositionX(), _maps[CELLX/2][CELLY/2]._testsprite.getPositionY()+dummySprite.getContentSize().height * 0.3));
         boardSprite.setScaleX(1.15);
         this.addChild(boardSprite, 1);
 
@@ -69,23 +69,37 @@ gCountHoney = 0;
         scoreSprite.setPosition(cc.p(size.width * 0.125, size.height * 0.7));
         this.addChild(scoreSprite, 1);
 
+                var scoreMeterSprite = new cc.Sprite(res.ScoreMeter_png);
+        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
+        scoreMeterSprite.setPosition(cc.p(size.width * 0.125, size.height * 0.3));
+        this.addChild(scoreMeterSprite, 1);
+                        var titleSprite = new cc.Sprite(res.Tittle_png);
+        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
+        titleSprite.setPosition(cc.p(size.width * 0.2, size.height * 0.9));
+        this.addChild(titleSprite, 1);
+
+                                var PowerUpSprite = new cc.Sprite(res.Powerup_png);
+        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
+        PowerUpSprite.setPosition(cc.p(size.width * 0.9, size.height * 0.9));
+        this.addChild(PowerUpSprite, 1);
+
         var menuItemBeeBtn = new cc.MenuItemSprite(
             new cc.Sprite(res.Cell_BeeClickMe_png), // normal state image
             new cc.Sprite(res.CellBee_png),
             new cc.Sprite(res.CellBee_png),// select state image
             onBeeClick, this);
         var menu = new cc.Menu(menuItemBeeBtn);  //7. create the menu
-        menu.setPosition(cc.p(size.width *0.1, size.height*0.2));
-        this.addChild(menu);
+        menu.setPosition(cc.p(size.width *0.3, size.height*0.15));
+        this.addChild(menu,2);
 
 
         var beeCount = new cc.LabelTTF.create(gCountBee+"/"+NO_OF_BOMBS, "Helvetica", 25);
-        beeCount.setPosition(cc.p(size.width * 0.9,  size.height * 0.9));
+        beeCount.setPosition(cc.p(size.width * 0.125,  size.height * 0.7));
         this.addChild(beeCount,4);
         this.beeCount_lbl = beeCount;
 
         var honeyCount = new cc.LabelTTF.create(gCountHoney+"/"+ NO_OF_HONEY, "Helvetica", 25);
-        honeyCount.setPosition(cc.p(size.width * 0.95,  size.height * 0.9));
+        honeyCount.setPosition(cc.p(size.width * 0.15,  size.height * 0.1));
         this.addChild(honeyCount,4);
         this.honeyCount_lbl = honeyCount;
 
@@ -242,7 +256,7 @@ function goBactToLevelSelector(){
 
 function onBeeClick(menuItem){
 
-    cc.log("Works");
+ cc.audioEngine.playEffect(res.select_mp3);
     cc.log(gClickMode);
   //  cc.log(menuItem.getChildren().length);
     if(gClickMode == 1){
