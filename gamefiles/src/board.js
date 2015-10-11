@@ -23,16 +23,22 @@ var BoardLayer = cc.Layer.extend({
     sprite:null,
 
     ctor:function () {
+gCountBee = 0;
+gCountHoney = 0;
+
 
             this._super();
-        game_is_over = false;
+       game_is_over = false;
         n_of_open_cells = 0;
+        var size = cc.winSize;
 
         for(var i =0; i<10; i++){
+
              _maps[i]=new Array(10);
             }
-            for (var i = 0; i < CELLX; i++) {
-                for (var j = 0; j < CELLY; j++) {
+            for (var i = 0; i < 10; i++) {
+                for (var j = 0; j < 10; j++) {
+
                     this.addCell(i, j);
                 }
             }
@@ -42,9 +48,9 @@ var BoardLayer = cc.Layer.extend({
         this.fixHoney();
 
 
-        var size = cc.winSize;
+        
 
-       var sprite = new cc.Sprite.create(res.Forest_BG_png);
+        var sprite = new cc.Sprite(res.Forest_BG_png);
        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
         sprite.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(sprite, 0);
@@ -52,13 +58,13 @@ var BoardLayer = cc.Layer.extend({
 
         //I am going to hack my way thru to get th ecorrect positions!!
         var dummySprite =new cc.Sprite(res.CellNormal_png);
-        var boardSprite = new cc.Sprite.create(res.BeeHive_BG_png);
+        var boardSprite = new cc.Sprite(res.BeeHive_BG_png);
         // sprite.setAnchorPoint(cc.p(0.5, 0.5));
         boardSprite.setPosition(cc.p(_maps[4][4]._testsprite.getPositionX()+dummySprite.getContentSize().width/4, _maps[CELLX/2][CELLY/2]._testsprite.getPositionY()+dummySprite.getContentSize().height * 0.3));
         boardSprite.setScaleX(1.15);
         this.addChild(boardSprite, 1);
 
-        var scoreSprite = new cc.Sprite.create(res.ScoreBoard_png);
+        var scoreSprite = new cc.Sprite(res.ScoreBoard_png);
         // sprite.setAnchorPoint(cc.p(0.5, 0.5));
         scoreSprite.setPosition(cc.p(size.width * 0.125, size.height * 0.7));
         this.addChild(scoreSprite, 1);
@@ -91,7 +97,7 @@ var BoardLayer = cc.Layer.extend({
             gClickMode = consts.CLICK_MODE_BEE;
 
 
-            var sprite = new cc.Sprite.create(res.CellBee_png);
+            var sprite = new cc.Sprite(res.CellBee_png);
             var children = this.getChildren();
             //cc.log("3 cell Child Just C " +c._x+"," + c._y);
             sprite.setPosition(cc.p(children[1].getPositionX()+children[1].getContentSize().width/2, children[1].getPositionY()+children[1].getContentSize().height/2));
@@ -106,16 +112,15 @@ var BoardLayer = cc.Layer.extend({
 
     addCell : function(x,y) {
         try {
+var size = cc.winSize;
+
 
             var cell = new Cell(x,y);
-            //var size = cc.winSize;
-            //cc.p(size.width / 2, size.height / 2);
-            //
-            //cell.setCellSpritePos(x,y);
 
-           // cell.setUpEventListner();
+
 
             this.addChild(cell.getCellSprite(), 3);
+            cc.log("Added Menu2");
             cell.bomb = 0;
             cell.honey = 0;
             cell.board = this;
@@ -172,41 +177,13 @@ var BoardLayer = cc.Layer.extend({
         this.n_of_flags = 0;
         this.n_of_open_cells = 0;
 
-        for (var i=0;i<NO_OF_BOMBS;i++){
-           // cc.log("cellx"+(Math.random() *10 )%CELLX);
-            var x= Math.floor((Math.random() *10 )%CELLX);
-            var y = Math.floor((Math.random() *10 )%CELLY)
-            _maps[x][y].bomb = 1;
-
-
-        }
-       /* for (var x=0;x<CELLX;x++){
-            for (var y=0;y<CELLY;y++){
-
-                    //var randomValue = Math.floor((Math.random() * 100));
-                    if (Math.random() < PERCENTAGE_BOMB) {
-                        _maps[x][y].bomb = 1;
-                        this.n_of_bombs++;
-
-                }else {
-                    _maps[x][y].bomb = 0;
-
-
-                }
-               cc.log("At moment Bomb" +  _maps[x][y].bomb +"("+ x+","+y+")");
-            }
-        }*/
-
-    },
-    fixHoney : function() {
-
 var i=0;
-        while(i<NO_OF_HONEY){
+        while(i<10){
             // cc.log("cellx"+(Math.random() *10 )%CELLX);
             var x= Math.floor((Math.random() *10 )%CELLX);
             var y = Math.floor((Math.random() *10 )%CELLY);
-            if(_maps[x][y].bomb != 1 &&  _maps[x][y].honey != 1) {
-                _maps[x][y].honey = 1;
+            if(_maps[x][y].bomb != 1 ) {
+                _maps[x][y].bomb = 1;
 
                 i++;
             }
@@ -214,24 +191,21 @@ var i=0;
 
         }
 
-    /*    for (var x=0;x<CELLX;x++){
-            for (var y=0;y<CELLY;y++){
-                //var randomValue = Math.floor((Math.random() * 100));
-                if( _maps[x][y].bomb){
-                    _maps[x][y].honey=0;
-                }
-                else if(Math.random() < PERCENTAGE_HONEY){
-                    _maps[x][y].honey=1;
-                    this.n_of_honey_cells++;
 
-                }
-                else{
-                    _maps[x][y].honey=0;
-                }
-              //  cc.log("At moment Honey" +  _maps[x][y].honey +"("+ x+","+y+")");
+    },
+    fixHoney : function() {
+
+var i=0;
+        while(i<5){
+            // cc.log("cellx"+(Math.random() *10 )%CELLX);
+            var x= Math.floor((Math.random() *10 )%CELLX);
+            var y = Math.floor((Math.random() *10 )%CELLY);
+            if(_maps[x][y].bomb != 1 &&  _maps[x][y].honey !=1) {
+                _maps[x][y].honey = 1;
+
+                i++;
             }
-        }*/
-
+        }
     }
 
 
@@ -269,13 +243,16 @@ function goBactToLevelSelector(){
 function onBeeClick(menuItem){
 
     cc.log("Works");
-    cc.log(menuItem.getChildren().length);
-    if(gClickMode == consts.CLICK_MODE_OPEN){
-        gClickMode = consts.CLICK_MODE_BEE;
-        menuItem.setNormalImage(new cc.Sprite.create(res.CellBee_png));
+    cc.log(gClickMode);
+  //  cc.log(menuItem.getChildren().length);
+    if(gClickMode == 1){
+        cc.log("OPEN");
+        gClickMode = 2;
+        menuItem.setNormalImage(new cc.Sprite(res.CellBee_png));
     }else {
-        gClickMode = consts.CLICK_MODE_OPEN;
-        menuItem.setNormalImage(new cc.Sprite.create(res.Cell_BeeClickMe_png));
+        cc.log("BEE");
+        gClickMode = 1;
+        menuItem.setNormalImage(new cc.Sprite(res.Cell_BeeClickMe_png));
     }
 
 }
