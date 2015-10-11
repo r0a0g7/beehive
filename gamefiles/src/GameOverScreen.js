@@ -18,6 +18,12 @@ var GameOverLayer = cc.Layer.extend({
         youWon.setPosition(cc.p(size.width*0.5 , size.height *0.6));
         youLost.setPosition(cc.p(size.width*0.5 , size.height *0.7));
 
+        var honeyCollected = new cc.LabelTTF.create("You Collected  "+gCountHoney + " Honey!!");
+        honeyCollected.setPosition(cc.p(size.width * 0.5,  size.height * 0.9));
+        this.addChild(honeyCollected,4);
+        this.beeCount_lbl = honeyCollected;
+
+
         cc.log("number of honey colleceted: " + gCountHoney);
         if(gCountHoney < NO_OF_HONEY){
             youWon.visible = false;
