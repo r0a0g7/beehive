@@ -10,11 +10,13 @@ var INITIALISED_2 = false;
 var consts = {};
 consts.CLICK_MODE_OPEN = 1;
 consts.CLICK_MODE_BEE = 2;
-
+consts.COUNTER_VALUE = 60;
 var gClickMode = consts.CLICK_MODE_OPEN;
 var gCountOpen = 0;
 var gCountBee = 0;
 var gCountHoney = 0;
+
+var gameCounterSec = 60;
 
 var NO_OF_HONEY = 5;
 var NO_OF_BOMBS = 10;
@@ -105,9 +107,29 @@ gCountHoney = 0;
         this.addChild(honeyCount,4);
         this.honeyCount_lbl = honeyCount;
 
+
+        var gameCounterLabel = new cc.LabelTTF.create(gameCounterSec);
+        gameCounterLabel.setPosition(cc.p(size.width * 0.5,  size.height * 0.95));
+        gameCounterLabel.color = cc.color(255,0,0);
+        this.addChild(gameCounterLabel,4);
+        this.gameCounterValue = gameCounterLabel;
+
+        this.schedule(this.gameCounterFunction, 1);
+
         return true;
+
+
     },
 
+
+    gameCounterFunction:function(){
+        if(gameCounterSec--) {
+            this.gameCounterValue.setString(gameCounterSec);
+        }
+        else{
+            goBactToLevelSelector();
+        }
+    },
     onMarkBee : function() {
         if(gClickMode == consts.CLICK_MODE_OPEN){
             gClickMode = consts.CLICK_MODE_BEE;
@@ -123,8 +145,6 @@ gCountHoney = 0;
             gClickMode = consts.CLICK_MODE_OPEN;
         }
     },
-
-
 
     addCell : function(x,y) {
         try {

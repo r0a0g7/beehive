@@ -47,6 +47,7 @@ var gotoMap = function()
     gCountOpen = 0;
     gCountBee = 0;
     gCountHoney = 0;
+    gameCounterSec=consts.COUNTER_VALUE;
     INITIALIZED_1=false;
     var scene = new ForestScene();
     cc.director.runScene(scene);
@@ -58,6 +59,7 @@ var restartGame = function()
     gCountOpen = 0;
     gCountBee = 0;
     gCountHoney = 0;
+    gameCounterSec=consts.COUNTER_VALUE;
     var scene = new BoardScene();
     cc.director.pushScene(scene);
 };
