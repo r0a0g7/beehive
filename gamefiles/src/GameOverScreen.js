@@ -8,8 +8,8 @@ var GameOverLayer = cc.Layer.extend({
         sprite.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(sprite, 0);
 
-        var restart = cc.MenuItemImage.create(res.Restart_Game, res.Restart_Game, res.Restart_Game, gotoMap, this);       //Go toMap Button
-        var goToMap = cc.MenuItemImage.create(res.Goto_Menu, res.Goto_Menu, res.Goto_Menu, restartGame, this);   //Go to Restart Button
+        var restart = cc.MenuItemImage.create(res.Restart_Game, res.Restart_Game, res.Restart_Game, restartGame, this);       //Go toMap Button
+        var goToMap = cc.MenuItemImage.create(res.Goto_Menu, res.Goto_Menu, res.Goto_Menu, gotoMap, this);   //Go to Restart Button
         restart.setPosition(cc.p(size.width*0.5 , size.height *0.2));
         goToMap.setPosition(cc.p(size.width*0.5 , size.height *0.4));
 
