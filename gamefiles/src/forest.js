@@ -58,21 +58,21 @@ var level1Run = function()
     //For higher levels pass parameters to this one
     cc.log("inside Level 1");
     var scene = new BoardScene();
-    cc.director.runScene(scene);
+    cc.director.pushScene(scene);
 };
 
 var level2Run = function()
 {
     //For higher levels pass parameters to this one
     var scene = new BoardScene();
-    cc.director.runScene(scene);
+    cc.director.pushScene(scene);
 };
 
 var level3Run = function()
 {
     //For higher levels pass parameters to this one
     var scene = new BoardScene();
-    cc.director.runScene(scene);
+    cc.director.pushScene(scene);
 };
 
 

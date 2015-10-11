@@ -5,6 +5,7 @@ var PERCENTAGE_HONEY=0.1;
 var n_of_open_cells;
 var game_is_over;
 var n_of_bombs;
+var INITIALISED_2 = false;
 
 var consts = {};
 consts.CLICK_MODE_OPEN = 1;
@@ -254,6 +255,14 @@ function markBee(board){
 
 }
 
+function goBactToLevelSelector(){
+
+INITIALISED_2 = false
+    cc.director.popScene();
+
+
+}
+
 function onBeeClick(menuItem){
 
     cc.log("Works");
@@ -274,7 +283,10 @@ function onBeeClick(menuItem){
 var BoardScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
+        if(INITIALISED_2 == false){
+            INITIALISED_2 = true;
             var layer = new BoardLayer();
             this.addChild(layer);
+        }
     }
 });
