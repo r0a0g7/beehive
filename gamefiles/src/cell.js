@@ -18,13 +18,11 @@ function Cell(x, y) {
 
     this.status = 0;
 
-cc.log("CELL POPULATION");
     this._testsprite = new cc.Menu(menuItemPlay);  //7. create the menu
 
     this._testsprite.setPosition(cc.p(size.width - menuItemPlay.getContentSize().width  - ((CELLX - y)*menuItemPlay.getContentSize().width)- ((menuItemPlay.getContentSize().width/2) * (x%2))  , size.height - (size.height/5) - (x*(menuItemPlay.getContentSize().height * 0.75)) ));
 //
     //- ((menuItemPlay.getContentSize().width/2) * (y%2))
-    cc.log("Cell Position x="+this._x+"  y="+this._y+"  X="+this._testsprite.getPositionX() +"  Y ="+this._testsprite.getPositionY());
 
 }
 
@@ -98,7 +96,6 @@ cc.log("GAME OVER");
        // cc.log("0 cell Child "+children[0]);
         sprite.setPosition(cc.p(children[0].getPositionX()+children[0].getContentSize().width/2, children[0].getPositionY()+children[0].getContentSize().height/2));
         children[0].addChild(sprite, 7);
-
         //c.bomb=0;
         goBactToLevelSelector();
 
@@ -257,6 +254,10 @@ function onClick(cell,menuItem){
                 n_of_open_cells++;
                 gCountHoney++;
                 foundHoney(cell.board);
+                if(gCountHoney >= NO_OF_HONEY){
+                    cc.log("honey clicked and honey num"+gCountHoney +"need->" + NO_OF_HONEY);
+                    goBactToLevelSelector();
+                }
 
             }
             else {

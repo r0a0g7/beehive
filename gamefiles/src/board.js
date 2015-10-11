@@ -205,7 +205,7 @@ var i=0;
             // cc.log("cellx"+(Math.random() *10 )%CELLX);
             var x= Math.floor((Math.random() *10 )%CELLX);
             var y = Math.floor((Math.random() *10 )%CELLY);
-            if(_maps[x][y].bomb != 1) {
+            if(_maps[x][y].bomb != 1 &&  _maps[x][y].honey != 1) {
                 _maps[x][y].honey = 1;
 
                 i++;
@@ -257,8 +257,11 @@ function markBee(board){
 
 function goBactToLevelSelector(){
 
-INITIALISED_2 = false
+    INITIALISED_2 = false;
     cc.director.popScene();
+    cc.log("Creating New Gameoverscene");
+    var scene = new GameOverScene();
+    cc.director.runScene(scene);
 
 
 }
