@@ -1,45 +1,58 @@
-var INITIALIZED = false;
-
 var HelloWorldLayer = cc.Layer.extend({
-    sprite:null,
-    ctor:function () {
-        //////////////////////////////
-        // 1. super init first
+    sprite: null,
+    audioEngine: null,
+    musicPlayer: null,
+    ctor: function () {
         this._super();
 
-        /////////////////////////////
-        // 2. add a menu item with "X" image, which is clicked to quit the program
-        //    you may modify it.
-        // ask the window size
-        var size = cc.winSize;
+        try {
+            var size = cc.winSize;
+           
+            var sprite = new cc.Sprite(res.Forest_BG_png);
+            sprite.attr({
+                x: 0,
+                y: 0,
+                anchorX: 0,
+                anchorY: 0
+            });
+            this.addChild(sprite);
 
-        var sprite = new cc.Sprite.create(res.HelloWorld_png);
-        sprite.setAnchorPoint(cc.p(0.5, 0.5));
-        sprite.setPosition(cc.p(size.width / 2, size.height / 2));
-        this.addChild(sprite, 0);
+            var gameNameLabel = cc.LabelTTF.create("Beee Hive", "Chalkduster", 100);
+            gameNameLabel.setPosition(size.width / 2, size.height / 2 + size.height * .35);
+            gameNameLabel.setAnchorPoint(.5, .5);
+            this.addChild(gameNameLabel);
 
-        var item1 = cc.MenuItemImage.create(res.CellNormal_png, res.CellNormal_png, res.CellNormal_png,startGame, this);
-        item1.setPosition(cc.p(size.width/2 , size.height / 2 + 50));
-        var menu = cc.Menu.create(item1);
-        menu.setPosition(cc.p(0, 0));
+            var buttonFont = "Arial Rounded MT Bold";
+            var buttonFontSize = 20;
 
-        this.addChild(menu,2);
-        cc.log("Ading Menu");
-      /*  var transitionTime = 1;
-// Create the next scene
-        var nextScene = new ForestScene();
-// Create the transition scene with the next scene
-        var transitionScene = new cc.TransitionProgressInOut(transitionTime, nextScene);
+            var item1 = new cc.MenuItemImage(res.StartButton_png, res.StartButtonPressed_png, res.CellNormal_png,startGame, this);
+            item1.setPosition(cc.p(size.width/2 , size.height / 2 + 50));
+            var menu = new cc.Menu(item1);
+            menu.setPosition(cc.p(0, 0));
 
-        cc.director.runScene(new cc.TransitionFadeUp(1,transitionScene));*/
+         this.addChild(menu);
 
-       /* var menuItem1 = new cc.MenuItemFont("Push", play);
-        var menu = new cc.Menu(menuItem1);
-        menu.alignItemsVertically();
-        this.addChild(menu,2);*/
+
+            //6.create a menu and assign onPlay event callback to it
+           
+          
+
+            //musicPlayer = new cc.MenuItemSprite(
+            //    new cc.Sprite(res.stopMusic), // normal state image
+            //    new cc.Sprite(res.playMusic), // select state image
+            //    this.stopPlay, this);
+            //var musicMenu = new cc.Menu(musicPlayer);  //7. create the menu
+            //musicMenu.setPosition(cc.p(winsize.width - 10, winsize.height - 40))
+            //this.addChild(musicMenu);
+
+        } catch (err) {
+            cc.log(err);
+        }
 
         return true;
-    }
+    },
+
+
 });
 
 var startGame = function()
@@ -52,15 +65,14 @@ var startGame = function()
 };
 
 var HelloWorldScene = cc.Scene.extend({
-    onEnter:function () {
+    onEnter: function () {
         this._super();
+        
 
-        if (INITIALIZED == false)
-        {
-            INITIALIZED = true;
 
             var layer = new HelloWorldLayer();
-            this.addChild(layer);
-        }
+
+        this.addChild(layer);
     }
 });
+

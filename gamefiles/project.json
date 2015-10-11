@@ -2,7 +2,7 @@
     "project_type": "javascript",
 
     "debugMode" : 1,
-    "showFPS" : true,
+    "showFPS" : false,
     "frameRate" : 60,
     "id" : "gameCanvas",
     "renderMode" : 0,
@@ -14,7 +14,8 @@
         "src/resource.js",
         "src/app.js",
         "src/forest.js",
-      "src/board.js",
-      "src/cell.js"
+        "src/board.js",
+        "src/cell.js",
+        "src/GameOverScreen.js"
     ]
 }
