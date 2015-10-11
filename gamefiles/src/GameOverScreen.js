@@ -8,13 +8,13 @@ var GameOverLayer = cc.Layer.extend({
         sprite.setPosition(cc.p(size.width / 2, size.height / 2));
         this.addChild(sprite, 0);
 
-        var restart = cc.MenuItemImage.create(res.CellCount1_png, res.CellCount1_png, res.CellCount1_png, gotoMap, this);       //Go toMap Button
-        var goToMap = cc.MenuItemImage.create(res.CellCount2_png, res.CellCount2_png, res.CellCount2_png, restartGame, this);   //Go to Restart Button
+        var restart = cc.MenuItemImage.create(res.Restart_Game, res.Restart_Game, res.Restart_Game, gotoMap, this);       //Go toMap Button
+        var goToMap = cc.MenuItemImage.create(res.Goto_Menu, res.Goto_Menu, res.Goto_Menu, restartGame, this);   //Go to Restart Button
         restart.setPosition(cc.p(size.width*0.5 , size.height *0.2));
         goToMap.setPosition(cc.p(size.width*0.5 , size.height *0.4));
 
-        var youWon = cc.MenuItemImage.create(res.CellCount3_png, res.CellCount3_png, res.CellCount3_png, doNothing, this);       //you won display
-        var youLost = cc.MenuItemImage.create(res.CellCount4_png, res.CellCount4_png, res.CellCount4_png, doNothing, this);      //you lost display
+        var youWon = cc.MenuItemImage.create(res.Won_Game, res.Won_Game, res.Won_Game, doNothing, this);       //you won display
+        var youLost = cc.MenuItemImage.create(res.Lost_Game, res.Lost_Game, res.Lost_Game, doNothing, this);      //you lost display
         youWon.setPosition(cc.p(size.width*0.5 , size.height *0.6));
         youLost.setPosition(cc.p(size.width*0.5 , size.height *0.7));
 

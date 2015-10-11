@@ -28,7 +28,12 @@ var res = {
     Forest_BG_png:"res/ForestBG.png",
     Level_disabled_png:"res/Level_disabled.png",
     Level_enabled_png:"res/Level_enabled.png",
-    Level_Selected_png:"res/Level_Selected.png"
+    Level_Selected_png:"res/Level_Selected.png",
+
+    Lost_Game:"res/lost.png",
+    Won_Game:"res/winning.png",
+    Restart_Game:"res/restart.png",
+    Goto_Menu:"res/mainmenu.png"
 
 };
 
