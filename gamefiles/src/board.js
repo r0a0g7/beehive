@@ -257,8 +257,11 @@ function markBee(board){
 
 function goBactToLevelSelector(){
 
-INITIALISED_2 = false
+    INITIALISED_2 = false;
     cc.director.popScene();
+    cc.log("Creating New Gameoverscene");
+    var scene = new GameOverScene();
+    cc.director.runScene(scene);
 
 
 }
