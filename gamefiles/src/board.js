@@ -94,12 +94,14 @@ gCountHoney = 0;
 
 
         var beeCount = new cc.LabelTTF.create(gCountBee+"/"+NO_OF_BOMBS, "Helvetica", 25);
-        beeCount.setPosition(cc.p(size.width * 0.125,  size.height * 0.7));
+        beeCount.setPosition(cc.p(size.width * 0.13,  size.height * 0.7));
+        beeCount.color = cc.color(255,0,255);
         this.addChild(beeCount,4);
         this.beeCount_lbl = beeCount;
 
         var honeyCount = new cc.LabelTTF.create(gCountHoney+"/"+ NO_OF_HONEY, "Helvetica", 25);
-        honeyCount.setPosition(cc.p(size.width * 0.15,  size.height * 0.1));
+        honeyCount.setPosition(cc.p(size.width * 0.13,  size.height * 0.12));
+        honeyCount.color = cc.color(255,0,255);
         this.addChild(honeyCount,4);
         this.honeyCount_lbl = honeyCount;
 
@@ -229,7 +231,7 @@ function foundHoney(board){
 
     cc.log("I AM AWESOME");
 
-    board.beeCount_lbl.setString(gCountHoney+"/"+NO_OF_HONEY);
+    board.honeyCount_lbl.setString(gCountHoney+"/"+NO_OF_HONEY);
 
 
 }
@@ -238,7 +240,7 @@ function markBee(board){
 
     cc.log("I AM AWESOME");
 
-    board.honeyCount_lbl.setString(gCountBee+"/"+NO_OF_BOMBS);
+    board.beeCount_lbl.setString(gCountBee+"/"+NO_OF_BOMBS);
 
 
 }

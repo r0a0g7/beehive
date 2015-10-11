@@ -20,8 +20,9 @@ var GameOverLayer = cc.Layer.extend({
 
         var honeyCollected = new cc.LabelTTF.create("You Collected  "+gCountHoney + " Honey!!");
         honeyCollected.setPosition(cc.p(size.width * 0.5,  size.height * 0.9));
+        honeyCollected.color = cc.color(0,255,0);
         this.addChild(honeyCollected,4);
-        this.beeCount_lbl = honeyCollected;
+        this.honeyCollectedLabel = honeyCollected;
 
 
         cc.log("number of honey colleceted: " + gCountHoney);
