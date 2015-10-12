@@ -10,13 +10,13 @@ var INITIALISED_2 = false;
 var consts = {};
 consts.CLICK_MODE_OPEN = 1;
 consts.CLICK_MODE_BEE = 2;
-consts.COUNTER_VALUE = 60;
+consts.COUNTER_VALUE = 180;
 var gClickMode = consts.CLICK_MODE_OPEN;
 var gCountOpen = 0;
 var gCountBee = 0;
 var gCountHoney = 0;
 
-var gameCounterSec = 60;
+var gameCounterSec = 180;
 var gameLifeLeft = 10;
 
 var NO_OF_HONEY = 5;
@@ -231,7 +231,7 @@ var size = cc.winSize;
         this.n_of_open_cells = 0;
 
 var i=0;
-        while(i<10){
+        while(i<NO_OF_BOMBS){
             // cc.log("cellx"+(Math.random() *10 )%CELLX);
             var x= Math.floor((Math.random() *10 )%CELLX);
             var y = Math.floor((Math.random() *10 )%CELLY);
@@ -249,7 +249,7 @@ var i=0;
     fixHoney : function() {
 
 var i=0;
-        while(i<5){
+        while(i<NO_OF_HONEY){
             // cc.log("cellx"+(Math.random() *10 )%CELLX);
             var x= Math.floor((Math.random() *10 )%CELLX);
             var y = Math.floor((Math.random() *10 )%CELLY);

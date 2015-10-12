@@ -46,7 +46,9 @@ var level1Run = function()
 {
     //For higher levels pass parameters to this one
     cc.audioEngine.playEffect(res.select_mp3);
-    cc.log("inside Level 1");
+    NO_OF_BOMBS = 10;
+    NO_OF_HONEY = 5;
+    cc.log("inside Level 1, Honey: "+NO_OF_HONEY+", Bee: "+NO_OF_BOMBS);
     var scene = new BoardScene();
     cc.director.pushScene(scene);
 };
@@ -55,6 +57,9 @@ var level2Run = function()
 {
     //For higher levels pass parameters to this one
     cc.audioEngine.playEffect(res.select_mp3);
+    NO_OF_BOMBS = 20;
+    NO_OF_HONEY = 5;
+    cc.log("inside Level 3, Honey: "+NO_OF_HONEY+", Bee: "+NO_OF_BOMBS);
     var scene = new BoardScene();
     cc.director.pushScene(scene);
 };
@@ -63,6 +68,9 @@ var level3Run = function()
 {
     //For higher levels pass parameters to this one
     cc.audioEngine.playEffect(res.select_mp3);
+    NO_OF_BOMBS = 15;
+    NO_OF_HONEY = 5;
+    cc.log("inside Level 2, Honey: "+NO_OF_HONEY+", Bee: "+NO_OF_BOMBS);
     var scene = new BoardScene();
     cc.director.pushScene(scene);
 };
