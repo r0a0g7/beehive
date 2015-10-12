@@ -14,7 +14,7 @@ var res = {
     CellCount6_png   : "res/Cell_count06.png",
     CellEmpty_png :"res/Cell_Empty.png",
     Cell_BeeClickMe_png :"res/Cell_BeeClickMe.png",
-    s_music_background :"res/s_music_background.mp3",
+    s_music_background :"res/s_music_background.wav",
     select_mp3 :"res/select.mp3",
     Bee_mp3 :"res/Bee.mp3",
     Slurp_mp3 : "res/Slurp.mp3",
