@@ -7,6 +7,7 @@ var HelloWorldLayer = cc.Layer.extend({
 
         try {
             var size = cc.winSize;
+            cc.audioEngine.playEffect(res.s_music_background,true);
            
             var sprite = new cc.Sprite(res.Forest_BG_png);
             sprite.attr({
@@ -57,6 +58,7 @@ var HelloWorldLayer = cc.Layer.extend({
 
 var startGame = function()
 {
+    cc.audioEngine.playEffect(res.Bee_mp3);
     //For higher levels pass parameters to this one
     cc.log("inside Level 1");
     var scene = new ForestScene();

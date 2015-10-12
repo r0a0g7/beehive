@@ -45,6 +45,7 @@ try {
 var level1Run = function()
 {
     //For higher levels pass parameters to this one
+    cc.audioEngine.playEffect(res.select_mp3);
     cc.log("inside Level 1");
     var scene = new BoardScene();
     cc.director.pushScene(scene);
@@ -53,6 +54,7 @@ var level1Run = function()
 var level2Run = function()
 {
     //For higher levels pass parameters to this one
+    cc.audioEngine.playEffect(res.select_mp3);
     var scene = new BoardScene();
     cc.director.pushScene(scene);
 };
@@ -60,6 +62,7 @@ var level2Run = function()
 var level3Run = function()
 {
     //For higher levels pass parameters to this one
+    cc.audioEngine.playEffect(res.select_mp3);
     var scene = new BoardScene();
     cc.director.pushScene(scene);
 };
