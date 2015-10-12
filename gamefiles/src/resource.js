@@ -33,12 +33,12 @@ var res = {
 
     Cell_Selected_png :"res/Cell_Selected.png",
     BeeHive_BG_png:"res/BeeHive_BG.png",
-    ScoreMeter_0:"res/ScoreMeter.png",
-    ScoreMeter_1:"res/ScoreMeter.png",
-    ScoreMeter_2:"res/ScoreMeter.png",
-    ScoreMeter_3:"res/ScoreMeter.png",
-    ScoreMeter_4:"res/ScoreMeter.png",
-    ScoreMeter_5:"res/ScoreMeter.png",
+    ScoreMeter_0:"res/ScoreMeter0.png",
+    ScoreMeter_1:"res/ScoreMeter1.png",
+    ScoreMeter_2:"res/ScoreMeter2.png",
+    ScoreMeter_3:"res/ScoreMeter3.png",
+    ScoreMeter_4:"res/ScoreMeter4.png",
+    ScoreMeter_5:"res/ScoreMeter5.png",
 
 
     BG_png:"res/BG.png",
