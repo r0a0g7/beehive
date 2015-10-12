@@ -48,6 +48,8 @@ var level1Run = function()
     cc.audioEngine.playEffect(res.select_mp3);
     NO_OF_BOMBS = 10;
     NO_OF_HONEY = 5;
+    gameCounterSec = 180;
+    consts.COUNTER_VALUE = 180
     cc.log("inside Level 1, Honey: "+NO_OF_HONEY+", Bee: "+NO_OF_BOMBS);
     var scene = new BoardScene();
     cc.director.pushScene(scene);
@@ -59,6 +61,8 @@ var level2Run = function()
     cc.audioEngine.playEffect(res.select_mp3);
     NO_OF_BOMBS = 20;
     NO_OF_HONEY = 5;
+    gameCounterSec = 300;
+    consts.COUNTER_VALUE = 300
     cc.log("inside Level 3, Honey: "+NO_OF_HONEY+", Bee: "+NO_OF_BOMBS);
     var scene = new BoardScene();
     cc.director.pushScene(scene);
@@ -70,6 +74,8 @@ var level3Run = function()
     cc.audioEngine.playEffect(res.select_mp3);
     NO_OF_BOMBS = 15;
     NO_OF_HONEY = 5;
+    gameCounterSec = 180;
+    consts.COUNTER_VALUE = 180
     cc.log("inside Level 2, Honey: "+NO_OF_HONEY+", Bee: "+NO_OF_BOMBS);
     var scene = new BoardScene();
     cc.director.pushScene(scene);
