@@ -49,7 +49,8 @@ var res = {
     Won_Game:"res/winning.png",
     Restart_Game:"res/restart.png",
     Goto_Menu:"res/mainmenu.png",
-    Life_left:"res/heart.png"
+    Life_left:"res/heart.png",
+    Life_left_Big:"res/heart_big.png"
 };
 
 var g_resources = [];
