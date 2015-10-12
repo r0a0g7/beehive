@@ -69,12 +69,26 @@ var startGame = function()
 var HelloWorldScene = cc.Scene.extend({
     onEnter: function () {
         this._super();
-        
 
-
-            var layer = new HelloWorldLayer();
+        //to close app in android
+        if (cc.sys.isNative) {
+            createBackButtonListener.call(this);
+        }
+        var layer = new HelloWorldLayer();
 
         this.addChild(layer);
     }
 });
+
+var createBackButtonListener = function () {
+    cc.eventManager.addListener({
+        event: cc.EventListener.KEYBOARD,
+
+        onKeyReleased: function (key, event) {
+            if (key == cc.KEY.back) {
+                cc.director.end(); //this will close app
+            }
+        }
+    }, this);
+};
 
