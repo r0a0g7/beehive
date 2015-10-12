@@ -71,6 +71,9 @@ var level3Run = function()
 var ForestScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
+        if (cc.sys.isNative) {
+            createBackButtonListener.call(this);
+        }
 cc.log("ForestScene");
         if (INITIALIZED_1 == false)
         {
@@ -81,3 +84,15 @@ cc.log("ForestScene");
         }
     }
 });
+
+var createBackButtonListener = function () {
+    cc.eventManager.addListener({
+        event: cc.EventListener.KEYBOARD,
+
+        onKeyReleased: function (key, event) {
+            if (key == cc.KEY.back) {
+                cc.director.end(); //this will close app
+            }
+        }
+    }, this);
+};
