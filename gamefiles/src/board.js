@@ -99,17 +99,16 @@ gCountHoney = 0;
 
 
         var beeCount = new cc.LabelTTF.create(gCountBee+"/"+NO_OF_BOMBS, "Verdana", 25);
-        beeCount.setPosition(cc.p(size.width * 0.13,  size.height * 0.7));
-        beeCount.color = cc.color(255,0,255);
+        beeCount.setPosition(cc.p(size.width * 0.15,  size.height * 0.74));
         this.addChild(beeCount,4);
         this.beeCount_lbl = beeCount;
-        var beeText = new cc.LabelTTF.create("Mark'em bees", "Verdana", 18);
-        beeText.setPosition(cc.p(size.width * 0.1,  size.height * 0.6));
+        var beeText = new cc.LabelTTF.create("Mark Bees", "Verdana", 18);
+        beeText.setPosition(cc.p(size.width * 0.1,  size.height * 0.62));
         this.addChild(beeText,4);
 
         var honeyCount = new cc.LabelTTF.create(gCountHoney+"/"+ NO_OF_HONEY, "Verdana", 25);
         honeyCount.setPosition(cc.p(size.width * 0.13,  size.height * 0.12));
-        honeyCount.color = cc.color(255,0,255);
+        honeyCount.color = cc.color(0,0,0);
         this.addChild(honeyCount,4);
         this.honeyCount_lbl = honeyCount;
 
