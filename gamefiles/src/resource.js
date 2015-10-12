@@ -40,6 +40,8 @@ var res = {
     ScoreMeter_4:"res/ScoreMeter4.png",
     ScoreMeter_5:"res/ScoreMeter5.png",
 
+    GameTitle:"res/GameTitle.png",
+
 
     BG_png:"res/BG.png",
     Forest_BG_png:"res/ForestBG.png",
