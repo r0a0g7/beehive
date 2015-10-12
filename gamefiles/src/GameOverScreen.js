@@ -13,10 +13,15 @@ var GameOverLayer = cc.Layer.extend({
         restart.setPosition(cc.p(size.width*0.5 , size.height *0.2));
         goToMap.setPosition(cc.p(size.width*0.5 , size.height *0.4));
 
-        var youWon =new cc.MenuItemImage(res.Won_Game, res.Won_Game, res.Won_Game, doNothing, this);       //you won display
-        var youLost = new cc.MenuItemImage(res.Lost_Game, res.Lost_Game, res.Lost_Game, doNothing, this);      //you lost display
-        youWon.setPosition(cc.p(size.width*0.5 , size.height *0.6));
-        youLost.setPosition(cc.p(size.width*0.5 , size.height *0.7));
+        var youWon = new cc.LabelTTF.create("You collected all honey!");
+        youWon.setPosition(cc.p(size.width*0.4 , size.height *0.7));
+        youWon.color = cc.color(0,255,0);
+        this.addChild(youWon,4);
+
+        var youLost = new cc.LabelTTF.create("You got stung!");
+        youLost.setPosition(cc.p(size.width*0.4 , size.height *0.7));
+        youLost.color = cc.color(255,0,0);
+        this.addChild(youLost,4);
 
         var honeyCollected = new cc.LabelTTF.create("You Collected  "+gCountHoney + " Honey!!");
         honeyCollected.setPosition(cc.p(size.width * 0.5,  size.height * 0.9));
@@ -24,6 +29,14 @@ var GameOverLayer = cc.Layer.extend({
         this.addChild(honeyCollected,4);
         this.honeyCollectedLabel = honeyCollected;
 
+        var gameLifeLabelOver = new cc.LabelTTF.create(gameLifeLeft);
+        gameLifeLabelOver.setPosition(cc.p(size.width * 0.57,  size.height * 0.68));
+        this.addChild(gameLifeLabelOver,4);
+        this.gameLifeValue = gameLifeLabelOver;
+
+        var LifeSpriteOver = new cc.Sprite(res.Life_left);
+        LifeSpriteOver.setPosition(cc.p(size.width * 0.55, size.height * 0.7));
+        this.addChild(LifeSpriteOver, 1);
 
         cc.log("number of honey colleceted: " + gCountHoney);
         if(gCountHoney < NO_OF_HONEY){
@@ -32,7 +45,7 @@ var GameOverLayer = cc.Layer.extend({
             youLost.visible = false;
         }
 
-        var menu = new cc.Menu(restart, goToMap, youWon, youLost );
+        var menu = new cc.Menu(restart, goToMap);
         menu.setPosition(cc.p(0, 0));
         cc.log("Selection Menu on restart");
         this.addChild(menu,2);

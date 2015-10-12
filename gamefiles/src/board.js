@@ -17,6 +17,7 @@ var gCountBee = 0;
 var gCountHoney = 0;
 
 var gameCounterSec = 60;
+var gameLifeLeft = 10;
 
 var NO_OF_HONEY = 5;
 var NO_OF_BOMBS = 10;
@@ -113,11 +114,20 @@ gCountHoney = 0;
         this.honeyCount_lbl = honeyCount;
 
 
-        var gameCounterLabel = new cc.LabelTTF.create("Time Left :"+gameCounterSec);
-        gameCounterLabel.setPosition(cc.p(size.width * 0.5,  size.height * 0.95));
+        var gameCounterLabel = new cc.LabelTTF.create("Time Left: "+gameCounterSec);
+        gameCounterLabel.setPosition(cc.p(size.width * 0.6,  size.height * 0.9));
         gameCounterLabel.color = cc.color(255,0,0);
         this.addChild(gameCounterLabel,4);
         this.gameCounterValue = gameCounterLabel;
+
+        var gameLifeLabel = new cc.LabelTTF.create(gameLifeLeft);
+        gameLifeLabel.setPosition(cc.p(size.width * 0.8,  size.height * 0.88));
+        this.addChild(gameLifeLabel,4);
+        this.gameLifeValue = gameLifeLabel;
+
+        var LifeSprite = new cc.Sprite(res.Life_left);
+        LifeSprite.setPosition(cc.p(size.width * 0.775, size.height * 0.9));
+        this.addChild(LifeSprite, 1);
 
         this.schedule(this.gameCounterFunction, 1);
 
@@ -129,9 +139,12 @@ gCountHoney = 0;
 
     gameCounterFunction:function(){
         if(gameCounterSec--) {
-            this.gameCounterValue.setString("Time Left :"+gameCounterSec);
+            this.gameCounterValue.setString("Time Left: "+gameCounterSec);
         }
         else{
+           if(gameLifeLeft){
+               gameLifeLeft--;
+           }
             goBactToLevelSelector();
         }
     },

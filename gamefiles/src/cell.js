@@ -110,6 +110,10 @@ cc.log("GAME OVER");
         children[0].addChild(sprite, 7);
 
         //c.bomb=0;
+        if(gameLifeLeft){
+            gameLifeLeft--;
+        }
+
         goBactToLevelSelector();
 
         return;
