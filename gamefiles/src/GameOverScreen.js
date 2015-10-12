@@ -56,7 +56,7 @@ var GameOverLayer = cc.Layer.extend({
         if(gCountHoney < NO_OF_HONEY){
             youWon.visible = false;
         } else {
-            honeyCollected.visible = false;
+            
             youLost.visible = false;
         }
 
