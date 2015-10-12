@@ -23,6 +23,7 @@ var res = {
     openCell_mp3:"res/openCell.mp3",
     Tittle_png:"res/Tittle.png",
     Powerup_png :"res/Powerup.png",
+    LDFComicSans :"res/LDFComicSans.ttf",
 
     Cell_Bee_GameOver_png :"res/Cell_Bee_GameOver.png",
     Powerup_png :"res/Powerup.png",
