@@ -69,10 +69,11 @@ gCountHoney = 0;
         scoreSprite.setPosition(cc.p(size.width * 0.125, size.height * 0.7));
         this.addChild(scoreSprite, 1);
 
-                var scoreMeterSprite = new cc.Sprite(res.ScoreMeter_png);
+                var scoreMeterSprite = new cc.Sprite(res.ScoreMeter_0);
         // sprite.setAnchorPoint(cc.p(0.5, 0.5));
         scoreMeterSprite.setPosition(cc.p(size.width * 0.125, size.height * 0.3));
         this.addChild(scoreMeterSprite, 1);
+        this.scoreMeter = scoreMeterSprite;
                         var titleSprite = new cc.Sprite(res.Tittle_png);
         // sprite.setAnchorPoint(cc.p(0.5, 0.5));
         titleSprite.setPosition(cc.p(size.width * 0.2, size.height * 0.9));
@@ -83,23 +84,27 @@ gCountHoney = 0;
         PowerUpSprite.setPosition(cc.p(size.width * 0.9, size.height * 0.9));
         this.addChild(PowerUpSprite, 1);
 
+
         var menuItemBeeBtn = new cc.MenuItemSprite(
-            new cc.Sprite(res.Cell_BeeClickMe_png), // normal state image
+            new cc.Sprite(res.CellPressed_png), // normal state image
             new cc.Sprite(res.CellBee_png),
             new cc.Sprite(res.CellBee_png),// select state image
             onBeeClick, this);
         var menu = new cc.Menu(menuItemBeeBtn);  //7. create the menu
-        menu.setPosition(cc.p(size.width *0.3, size.height*0.15));
+        menu.setPosition(cc.p(size.width *0.2, size.height*0.625));
         this.addChild(menu,2);
 
 
-        var beeCount = new cc.LabelTTF.create(gCountBee+"/"+NO_OF_BOMBS, "Helvetica", 25);
+        var beeCount = new cc.LabelTTF.create(gCountBee+"/"+NO_OF_BOMBS, "Verdana", 25);
         beeCount.setPosition(cc.p(size.width * 0.13,  size.height * 0.7));
         beeCount.color = cc.color(255,0,255);
         this.addChild(beeCount,4);
         this.beeCount_lbl = beeCount;
+        var beeText = new cc.LabelTTF.create("Mark'em bees", "Verdana", 18);
+        beeText.setPosition(cc.p(size.width * 0.1,  size.height * 0.6));
+        this.addChild(beeText,4);
 
-        var honeyCount = new cc.LabelTTF.create(gCountHoney+"/"+ NO_OF_HONEY, "Helvetica", 25);
+        var honeyCount = new cc.LabelTTF.create(gCountHoney+"/"+ NO_OF_HONEY, "Verdana", 25);
         honeyCount.setPosition(cc.p(size.width * 0.13,  size.height * 0.12));
         honeyCount.color = cc.color(255,0,255);
         this.addChild(honeyCount,4);
@@ -230,6 +235,44 @@ var i=0;
 function foundHoney(board){
 
     cc.log("I AM AWESOME");
+    var size = cc.winSize;
+    board.removeChild(board.scoreMeter);
+
+    switch(gCountHoney){
+        case 0: 
+        board.scoreMeter = new cc.Sprite(res.ScoreMeter_0);
+        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
+        board.scoreMeter.setPosition(cc.p(size.width * 0.125, size.height * 0.3));
+        board.addChild(board.scoreMeter, 1);//var scoreMeterImage = ScoreMeter_0;
+        break;
+        case 1:board.scoreMeter = new cc.Sprite(res.ScoreMeter_1);
+        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
+        board.scoreMeter.setPosition(cc.p(size.width * 0.125, size.height * 0.3));
+        board.addChild(board.scoreMeter, 1);
+        break;
+        case 2: board.scoreMeter = new cc.Sprite(res.ScoreMeter_2);
+        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
+        board.scoreMeter.setPosition(cc.p(size.width * 0.125, size.height * 0.3));
+        board.addChild(board.scoreMeter, 1);
+        break;
+        case 3: board.scoreMeter = new cc.Sprite(res.ScoreMeter_3);
+        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
+        board.scoreMeter.setPosition(cc.p(size.width * 0.125, size.height * 0.3));
+        board.addChild(board.scoreMeter, 1);
+        break;
+        case 4: board.scoreMeter = new cc.Sprite(res.ScoreMeter_4);
+        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
+        board.scoreMeter.setPosition(cc.p(size.width * 0.125, size.height * 0.3));
+        board.addChild(board.scoreMeter, 1);
+        case 5: board.scoreMeter = new cc.Sprite(res.ScoreMeter_5);
+        // sprite.setAnchorPoint(cc.p(0.5, 0.5));
+        board.scoreMeter.setPosition(cc.p(size.width * 0.125, size.height * 0.3));
+        board.addChild(board.scoreMeter, 1);
+        break;
+
+
+    }
+
 
     board.honeyCount_lbl.setString(gCountHoney+"/"+NO_OF_HONEY);
 
@@ -239,6 +282,7 @@ function foundHoney(board){
 function markBee(board){
 
     cc.log("I AM AWESOME");
+    
 
     board.beeCount_lbl.setString(gCountBee+"/"+NO_OF_BOMBS);
 
@@ -264,11 +308,11 @@ function onBeeClick(menuItem){
     if(gClickMode == 1){
         cc.log("OPEN");
         gClickMode = 2;
-        menuItem.setNormalImage(new cc.Sprite(res.CellBee_png));
+        menuItem.setNormalImage(new cc.Sprite(res.CellPressed_png));
     }else {
         cc.log("BEE");
         gClickMode = 1;
-        menuItem.setNormalImage(new cc.Sprite(res.Cell_BeeClickMe_png));
+        menuItem.setNormalImage(new cc.Sprite(res.CellBee_png));
     }
 
 }
