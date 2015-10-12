@@ -24,6 +24,9 @@ var res = {
     Tittle_png:"res/Tittle.png",
     Powerup_png :"res/Powerup.png",
     LDFComicSans :"res/LDFComicSans.ttf",
+    UpperBG:"res/UpperBG.png",
+    BottomBG:"res/BottomBG.png",
+    HoneyIcon:"res/HoneyIcon.png",
 
     Cell_Bee_GameOver_png :"res/Cell_Bee_GameOver.png",
     Powerup_png :"res/Powerup.png",
