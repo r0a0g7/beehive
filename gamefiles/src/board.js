@@ -114,7 +114,7 @@ gCountHoney = 0;
         this.honeyCount_lbl = honeyCount;
 
 
-        var gameCounterLabel = new cc.LabelTTF.create("Time Left: "+gameCounterSec);
+        var gameCounterLabel = new cc.LabelTTF.create("Time Left: "+gameCounterSec, "Verdana", 25);
         gameCounterLabel.setPosition(cc.p(size.width * 0.6,  size.height * 0.9));
         gameCounterLabel.color = cc.color(255,0,0);
         this.addChild(gameCounterLabel,4);

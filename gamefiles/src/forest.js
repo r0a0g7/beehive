@@ -18,9 +18,9 @@ var ForestLayer = cc.Layer.extend({
         this.addChild(sprite, 0);
 try {
 
-    var item1 = new cc.MenuItemImage(res.Cell_Bee_GameOver_png, res.CellBee_png, res.CellNormal_png, level1Run, this)
-    var item2 = new cc.MenuItemImage(res.Cell_Bee_GameOver_png, res.CellBee_png, res.Level_disabled_png, level2Run, this)
-    var item3 = new cc.MenuItemImage(res.Cell_Bee_GameOver_png, res.CellBee_png, res.Level_disabled_png, level3Run, this)
+    var item1 = new cc.MenuItemImage(res.honeySelected_forest, res.honey_forest, res.honey_forest, level1Run, this)
+    var item2 = new cc.MenuItemImage(res.honeySelected_forest, res.honey_forest, res.honey_forest, level2Run, this)
+    var item3 = new cc.MenuItemImage(res.honeySelected_forest, res.honey_forest, res.honey_forest, level3Run, this)
 
     item1.setPosition(cc.p(size.width *0.25 , size.height *0.3));
     item2.setPosition(cc.p(size.width*0.4 , size.height *0.7));

@@ -18,7 +18,7 @@ var HelloWorldLayer = cc.Layer.extend({
             });
             this.addChild(sprite);
 
-            var gameNameLabel = cc.LabelTTF.create("Beee Hive", "Chalkduster", 100);
+            var gameNameLabel = cc.LabelTTF.create("Beee Hive", "Comic Sans MS", 100);
             gameNameLabel.setPosition(size.width / 2, size.height / 2 + size.height * .35);
             gameNameLabel.setAnchorPoint(.5, .5);
             this.addChild(gameNameLabel);

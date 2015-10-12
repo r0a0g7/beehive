@@ -50,7 +50,10 @@ var res = {
     Restart_Game:"res/restart.png",
     Goto_Menu:"res/mainmenu.png",
     Life_left:"res/heart.png",
-    Life_left_Big:"res/heart_big.png"
+    Life_left_Big:"res/heart_big.png",
+    honey_forest:"res/honey_forest.png",
+    honeySelected_forest:"res/honeySelected_forest.png"
+
 };
 
 var g_resources = [];
