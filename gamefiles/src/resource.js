@@ -33,7 +33,7 @@ var res = {
     Cell_Selected_png :"res/Cell_Selected.png",
     BeeHive_BG_png:"res/BeeHive_BG.png",
     ScoreMeter_0:"res/ScoreMeter.png",
-    ScoreMeter_1:"res/Cell_Selected.png",
+    ScoreMeter_1:"res/ScoreMeter.png",
     ScoreMeter_2:"res/ScoreMeter.png",
     ScoreMeter_3:"res/ScoreMeter.png",
     ScoreMeter_4:"res/ScoreMeter.png",
