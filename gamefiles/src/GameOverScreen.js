@@ -13,7 +13,7 @@ var GameOverLayer = cc.Layer.extend({
         restart.setPosition(cc.p(size.width*0.5 , size.height *0.4));
         goToMap.setPosition(cc.p(size.width*0.5 , size.height *0.5));
 
-        var youWon = new cc.LabelTTF.create("You collected all honey!","Verdana", 25);
+        var youWon = new cc.LabelTTF.create("You found all honey!","Verdana", 25);
         youWon.setPosition(cc.p(size.width*0.4 , size.height *0.7));
         youWon.color = cc.color(0,255,0);
         this.addChild(youWon,4);
