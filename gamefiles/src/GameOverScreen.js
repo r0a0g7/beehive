@@ -10,29 +10,43 @@ var GameOverLayer = cc.Layer.extend({
 
         var restart = new cc.MenuItemImage(res.Restart_Game, res.Restart_Game, res.Restart_Game, restartGame, this);       //Go toMap Button
         var goToMap = new cc.MenuItemImage(res.Goto_Menu, res.Goto_Menu, res.Goto_Menu, gotoMap, this);   //Go to Restart Button
-        restart.setPosition(cc.p(size.width*0.5 , size.height *0.2));
-        goToMap.setPosition(cc.p(size.width*0.5 , size.height *0.4));
+        restart.setPosition(cc.p(size.width*0.5 , size.height *0.4));
+        goToMap.setPosition(cc.p(size.width*0.5 , size.height *0.5));
 
-        var youWon =new cc.MenuItemImage(res.Won_Game, res.Won_Game, res.Won_Game, doNothing, this);       //you won display
-        var youLost = new cc.MenuItemImage(res.Lost_Game, res.Lost_Game, res.Lost_Game, doNothing, this);      //you lost display
-        youWon.setPosition(cc.p(size.width*0.5 , size.height *0.6));
-        youLost.setPosition(cc.p(size.width*0.5 , size.height *0.7));
+        var youWon = new cc.LabelTTF.create("You collected all honey!","Verdana", 25);
+        youWon.setPosition(cc.p(size.width*0.4 , size.height *0.7));
+        youWon.color = cc.color(0,255,0);
+        this.addChild(youWon,4);
 
-        var honeyCollected = new cc.LabelTTF.create("You Collected  "+gCountHoney + " Honey!!");
-        honeyCollected.setPosition(cc.p(size.width * 0.5,  size.height * 0.9));
+        var youLost = new cc.LabelTTF.create("You got stung!","Verdana", 25);
+        youLost.setPosition(cc.p(size.width*0.4 , size.height *0.7));
+        youLost.color = cc.color(255,0,0);
+        this.addChild(youLost,4);
+
+        var honeyCollected = new cc.LabelTTF.create("You Collected  "+gCountHoney + " Honey!!", "Verdana", 25);
+        honeyCollected.setPosition(cc.p(size.width * 0.5,  size.height * 0.84));
         honeyCollected.color = cc.color(0,255,0);
         this.addChild(honeyCollected,4);
         this.honeyCollectedLabel = honeyCollected;
 
+        var gameLifeLabelOver = new cc.LabelTTF.create(gameLifeLeft, "Verdana", 25);
+        gameLifeLabelOver.setPosition(cc.p(size.width * 0.6,  size.height * 0.68));
+        this.addChild(gameLifeLabelOver,4);
+        this.gameLifeValue = gameLifeLabelOver;
+
+        var LifeSpriteOver = new cc.Sprite(res.Life_left_Big);
+        LifeSpriteOver.setPosition(cc.p(size.width * 0.55, size.height * 0.7));
+        this.addChild(LifeSpriteOver, 1);
 
         cc.log("number of honey colleceted: " + gCountHoney);
         if(gCountHoney < NO_OF_HONEY){
             youWon.visible = false;
         } else {
+            honeyCollected.visible = false;
             youLost.visible = false;
         }
 
-        var menu = new cc.Menu(restart, goToMap, youWon, youLost );
+        var menu = new cc.Menu(restart, goToMap);
         menu.setPosition(cc.p(0, 0));
         cc.log("Selection Menu on restart");
         this.addChild(menu,2);
@@ -47,6 +61,7 @@ var gotoMap = function()
     gCountOpen = 0;
     gCountBee = 0;
     gCountHoney = 0;
+    gameCounterSec=consts.COUNTER_VALUE;
     INITIALIZED_1=false;
     var scene = new ForestScene();
     cc.director.runScene(scene);
@@ -58,6 +73,7 @@ var restartGame = function()
     gCountOpen = 0;
     gCountBee = 0;
     gCountHoney = 0;
+    gameCounterSec=consts.COUNTER_VALUE;
     var scene = new BoardScene();
     cc.director.pushScene(scene);
 };
