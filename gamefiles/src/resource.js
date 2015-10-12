@@ -14,7 +14,7 @@ var res = {
     CellCount6_png   : "res/Cell_count06.png",
     CellEmpty_png :"res/Cell_Empty.png",
     Cell_BeeClickMe_png :"res/Cell_BeeClickMe.png",
-    s_music_background :"res/s_music_background.mp3",
+    s_music_background :"res/s_music_background.wav",
     select_mp3 :"res/select.mp3",
     Bee_mp3 :"res/Bee.mp3",
     Slurp_mp3 : "res/Slurp.mp3",
@@ -23,6 +23,10 @@ var res = {
     openCell_mp3:"res/openCell.mp3",
     Tittle_png:"res/Tittle.png",
     Powerup_png :"res/Powerup.png",
+    LDFComicSans :"res/LDFComicSans.ttf",
+    UpperBG:"res/UpperBG.png",
+    BottomBG:"res/BottomBG.png",
+    HoneyIcon:"res/HoneyIcon.png",
 
     Cell_Bee_GameOver_png :"res/Cell_Bee_GameOver.png",
     Powerup_png :"res/Powerup.png",
@@ -32,7 +36,15 @@ var res = {
 
     Cell_Selected_png :"res/Cell_Selected.png",
     BeeHive_BG_png:"res/BeeHive_BG.png",
-    ScoreMeter_png:"res/ScoreMeter.png",
+    ScoreMeter_0:"res/ScoreMeter0.png",
+    ScoreMeter_1:"res/ScoreMeter1.png",
+    ScoreMeter_2:"res/ScoreMeter2.png",
+    ScoreMeter_3:"res/ScoreMeter3.png",
+    ScoreMeter_4:"res/ScoreMeter4.png",
+    ScoreMeter_5:"res/ScoreMeter5.png",
+
+    GameTitle:"res/GameTitle.png",
+
 
     BG_png:"res/BG.png",
     Forest_BG_png:"res/ForestBG.png",
@@ -42,7 +54,12 @@ var res = {
     Lost_Game:"res/lost.png",
     Won_Game:"res/winning.png",
     Restart_Game:"res/restart.png",
-    Goto_Menu:"res/mainmenu.png"
+    Goto_Menu:"res/mainmenu.png",
+    Life_left:"res/heart.png",
+    Life_left_Big:"res/heart_big.png",
+    honey_forest:"res/honey_forest.png",
+    honeySelected_forest:"res/honeySelected_forest.png"
+
 };
 
 var g_resources = [];

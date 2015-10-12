@@ -18,10 +18,9 @@ var HelloWorldLayer = cc.Layer.extend({
             });
             this.addChild(sprite);
 
-            var gameNameLabel = cc.LabelTTF.create("Beee Hive", "Chalkduster", 100);
-            gameNameLabel.setPosition(size.width / 2, size.height / 2 + size.height * .35);
-            gameNameLabel.setAnchorPoint(.5, .5);
-            this.addChild(gameNameLabel);
+            var GameTitle = new cc.Sprite(res.GameTitle);
+            GameTitle.setPosition(cc.p(size.width * 0.5, size.height * 0.4));
+            this.addChild(GameTitle, 1);
 
             var buttonFont = "Arial Rounded MT Bold";
             var buttonFontSize = 20;
@@ -69,12 +68,26 @@ var startGame = function()
 var HelloWorldScene = cc.Scene.extend({
     onEnter: function () {
         this._super();
-        
 
-
-            var layer = new HelloWorldLayer();
+        //to close app in android
+        if (cc.sys.isNative) {
+            createBackButtonListener.call(this);
+        }
+        var layer = new HelloWorldLayer();
 
         this.addChild(layer);
     }
 });
+
+var createBackButtonListener = function () {
+    cc.eventManager.addListener({
+        event: cc.EventListener.KEYBOARD,
+
+        onKeyReleased: function (key, event) {
+            if (key == cc.KEY.back) {
+                cc.director.end(); //this will close app
+            }
+        }
+    }, this);
+};
 
