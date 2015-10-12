@@ -113,7 +113,7 @@ gCountHoney = 0;
         this.honeyCount_lbl = honeyCount;
 
 
-        var gameCounterLabel = new cc.LabelTTF.create(gameCounterSec);
+        var gameCounterLabel = new cc.LabelTTF.create("Time Left :"+gameCounterSec);
         gameCounterLabel.setPosition(cc.p(size.width * 0.5,  size.height * 0.95));
         gameCounterLabel.color = cc.color(255,0,0);
         this.addChild(gameCounterLabel,4);
@@ -129,7 +129,7 @@ gCountHoney = 0;
 
     gameCounterFunction:function(){
         if(gameCounterSec--) {
-            this.gameCounterValue.setString(gameCounterSec);
+            this.gameCounterValue.setString("Time Left :"+gameCounterSec);
         }
         else{
             goBactToLevelSelector();
