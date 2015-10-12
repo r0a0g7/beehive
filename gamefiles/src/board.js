@@ -308,11 +308,11 @@ function onBeeClick(menuItem){
     if(gClickMode == 1){
         cc.log("OPEN");
         gClickMode = 2;
-        menuItem.setNormalImage(new cc.Sprite(res.CellPressed_png));
+        menuItem.setNormalImage(new cc.Sprite(res.CellBee_png));
     }else {
         cc.log("BEE");
         gClickMode = 1;
-        menuItem.setNormalImage(new cc.Sprite(res.CellBee_png));
+        menuItem.setNormalImage(new cc.Sprite(res.CellPressed_png));
     }
 
 }
